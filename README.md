@@ -101,17 +101,17 @@ In dialogue, press **E / Enter / Space** (or A / ×) to finish the line or conti
 Paste this into Claude Code, Codex, Cursor or any other coding agent that can run commands on your computer:
 
 ```text
-Install Saltmoss Harbor v1.0.0 on this computer from its official GitHub release, then tell me how to start it.
+Install Saltmoss Harbor v1.0.1 on this computer from its official GitHub release, then tell me how to start it.
 
-Release: https://github.com/gazhenko/saltmoss-harbor/releases/tag/v1.0.0
-Download each file from https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.0.0/<file>
-  macOS, Apple Silicon or Intel  SaltmossHarbor-v1.0.0-macOS-universal.zip  contains "Saltmoss Harbor.app"
-  Windows 10/11, x64             SaltmossHarbor-v1.0.0-Windows-x64.zip      files at the zip root; the game is SaltmossHarbor.exe
-  Linux, x64                     SaltmossHarbor-v1.0.0-Linux-x64.tar.gz     files at the archive root; the game is SaltmossHarbor.x86_64
+Release: https://github.com/gazhenko/saltmoss-harbor/releases/tag/v1.0.1
+Download each file from https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.0.1/<file>
+  macOS, Apple Silicon or Intel  SaltmossHarbor-v1.0.1-macOS-universal.zip  contains "Saltmoss Harbor.app"
+  Windows 10/11, x64             SaltmossHarbor-v1.0.1-Windows-x64.zip      files at the zip root; the game is SaltmossHarbor.exe
+  Linux, x64                     SaltmossHarbor-v1.0.1-Linux-x64.tar.gz     files at the archive root; the game is SaltmossHarbor.x86_64
   Checksums                      SHA256SUMS.txt
 
 1. Detect the OS and CPU. If this computer is not one of the three platforms above (for example Windows or Linux on ARM), stop and tell me.
-2. Check there is at least 1 GB free. Download the matching archive (about 180 MB) and SHA256SUMS.txt into a temporary folder with curl -L (curl.exe on Windows).
+2. Check there is at least 1 GB free. Download the matching archive (about 175 MB) and SHA256SUMS.txt into a temporary folder with curl -L (curl.exe on Windows).
 3. Compute the archive's SHA-256 and compare it with its line in SHA256SUMS.txt. If it does not match, delete the download and stop.
 4. Install it, replacing any earlier Saltmoss Harbor install at the same location:
    - macOS: run ditto -x -k <archive> ~/Applications so the app ends up at "~/Applications/Saltmoss Harbor.app". The build is ad-hoc signed and not notarized; if the app carries a com.apple.quarantine attribute, remove it with xattr -dr com.apple.quarantine on the app.
@@ -129,7 +129,7 @@ Download the archive for your computer from the [latest release](../../releases/
 - **macOS** (Apple Silicon + Intel): unzip, right-click `Saltmoss Harbor.app` → Open (the build is ad-hoc signed, not
   notarized). If macOS says it is damaged: `xattr -dr com.apple.quarantine "Saltmoss Harbor.app"`.
 - **Windows** (x64): extract the zip into a new folder and run `SaltmossHarbor.exe`. The Windows player is built from the same source as the others but hasn't been run on Windows yet; please report problems in an issue.
-- **Linux** (x64): extract into a new folder with `tar -xzf SaltmossHarbor-v1.0.0-Linux-x64.tar.gz`, then
+- **Linux** (x64): extract into a new folder with `tar -xzf SaltmossHarbor-v1.0.1-Linux-x64.tar.gz`, then
   `chmod +x SaltmossHarbor.x86_64 && ./SaltmossHarbor.x86_64` (Vulkan or OpenGL 4.5). The Linux player has been
   started and rendered under software OpenGL but not yet played on real Linux hardware.
 
@@ -149,7 +149,7 @@ packages in `Tools/requirements.txt` (only to regenerate art and audio); Blender
    it builds the clay materials, the Resources banks, the world scene from `Data/town_layout.json` and the Gallery.
 2. **Saltmoss ▸ Build ▸ All Platforms** exports players into `Builds/`. Headless: `Tools/remote.sh setup|content|build`
    runs the same steps on a licensed build machine over SSH (`Tools/cscheck.sh` type-checks the C# in seconds first).
-3. `Tools/release.sh v1.0.0` packages the players and the trailer with checksums and publishes a GitHub release.
+3. `Tools/release.sh v1.0.1` packages the players and the trailer with checksums and publishes a GitHub release.
 
 Everything in the game is generated from code:
 - `Tools/clay/` — the clay sculpting toolkit (`clay.py`: signed-distance primitives, smooth unions, paint, lumps and

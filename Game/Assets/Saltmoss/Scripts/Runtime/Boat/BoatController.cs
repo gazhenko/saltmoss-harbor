@@ -29,6 +29,11 @@ namespace Saltmoss
         public float Ice;              // 0..1 ice on deck
         public float Sputter;          // seconds of engine trouble left
         public bool Busy;              // a minigame is running: no helm input
+        /// <summary>Has she been out past the berth since Pip came aboard? (Only then is "tie up" on offer.)</summary>
+        public bool LeftBerth { get; private set; }
+        /// <summary>True on the frame Pip steps aboard, so the same key press can't also fire a deck action.</summary>
+        public bool JustBoarded => boardedFrame == Time.frameCount;
+        int boardedFrame = -1;
         /// <summary>Trailer/cut-scene autopilot: hold this speed and turn rate, ignore the helm.</summary>
         public bool autopilot;
         public float autoSpeed, autoTurn;
@@ -66,7 +71,26 @@ namespace Saltmoss
             return d < 160f ? Zone.Shallows : d < 380f ? Zone.Kelp : Zone.Deep;
         }
 
-        public bool InHarbour => Vector2.Distance(new Vector2(transform.position.x, transform.position.z), harbourMouth) < 40f && transform.position.z < harbourMouth.y + 5f;
+        // the crests of the two harbour arms, west to east across the mouth (WEST_ARM/EAST_ARM in
+        // Tools/clay/models/town_terrain.py); the basin is the water south of this line
+        static readonly Vector2[] Arms =
+        {
+            new Vector2(-50f, 22f), new Vector2(-46f, 32f), new Vector2(-39f, 43f), new Vector2(-31f, 54f), new Vector2(-22f, 64f),
+            new Vector2(-14f, 72f), new Vector2(-11.5f, 76f), new Vector2(12f, 76f), new Vector2(15.5f, 73f), new Vector2(24f, 69f),
+            new Vector2(34f, 64f), new Vector2(45f, 59f), new Vector2(55f, 53f), new Vector2(63f, 46f),
+        };
+
+        /// <summary>Inside the harbour arms (the berth and the town piers), where pots and lines aren't allowed.</summary>
+        public bool InHarbour => IsInHarbour(transform.position);
+
+        public static bool IsInHarbour(Vector3 p)
+        {
+            if (p.x < Arms[0].x || p.x > Arms[Arms.Length - 1].x) return false;
+            for (int i = 1; i < Arms.Length; i++)
+                if (p.x <= Arms[i].x)
+                    return p.z < Mathf.Lerp(Arms[i - 1].y, Arms[i].y, Mathf.InverseLerp(Arms[i - 1].x, Arms[i].x, p.x));
+            return false;
+        }
 
         public void Board()
         {
@@ -74,6 +98,8 @@ namespace Saltmoss
             if (p == null) return;
             Aboard = true;
             Docked = false;
+            LeftBerth = false;
+            boardedFrame = Time.frameCount;
             p.Board(helm != null ? helm : transform, Activity.Helm);
             if (CameraRig.I != null)
             {
@@ -85,6 +111,7 @@ namespace Saltmoss
                 CameraRig.I.pitch = 16f;
             }
             AudioDirector.Play("boat_horn", transform.position, 0.8f, 0f);
+            Debug.Log("[Boat] Pip is aboard");
             if (GameFlow.I != null) GameFlow.I.place = GameFlow.Place.Sea;
             GameState.D.boatDocked = false;
         }
@@ -112,6 +139,7 @@ namespace Saltmoss
             Aboard = false;
             Busy = false;
             GameState.D.boatDocked = true;
+            Debug.Log("[Boat] tied up at the berth");
             var pl = PlayerController.I;
             pl.Disembark(boardPoint, boardYaw);
             if (CameraRig.I != null)
@@ -212,6 +240,7 @@ namespace Saltmoss
             var pos = transform.position;
             pos.y = 0f;
             transform.position = pos;
+            if (Aboard && !LeftBerth && Vector3.Distance(pos, berthPos) > 16f) LeftBerth = true;
 
             Waves();
             Effects(dt);

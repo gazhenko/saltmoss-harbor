@@ -1,4 +1,14 @@
-## Saltmoss Harbor v1.0.0 — the first catch
+## Saltmoss Harbor v1.0.1 — she stays out
+
+### What's new in 1.0.1
+- **Fixed: boarding the Sally Mae kicked you straight back off.** The key press that took you aboard was also read
+  as "Tie up at the berth", so a few seconds later Pip was back on the dock. Boarding now only boards, and tying up is
+  offered once you've actually taken her out and brought her back.
+- **Fixed: crab pots and lines inside the harbour.** Only a small circle around the harbour mouth counted as "in the
+  harbour", so you could drop pots and cast right beside the pier. Now the whole basin inside the harbour arms
+  counts, as the tutorial says: sail out past the mouth to fish.
+
+### Saltmoss Harbor v1.0.0 — the first catch
 
 A cosy claymation fishing demo. You are **Pip**, a young puffin who inherits Gran's crab boat and her shuttered fish
 shop in the sea-worn town of Saltmoss Harbor. Haul crab pots, cast for fish shadows, dredge the Grey Deep for treasure,

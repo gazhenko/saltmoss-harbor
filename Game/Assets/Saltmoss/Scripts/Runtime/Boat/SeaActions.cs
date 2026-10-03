@@ -11,7 +11,7 @@ namespace Saltmoss
         void Update()
         {
             var boat = BoatController.I;
-            if (boat == null || !boat.Aboard || boat.Docked || boat.Busy || PlayerController.Locked) return;
+            if (boat == null || !boat.Aboard || boat.Docked || boat.Busy || boat.JustBoarded || PlayerController.Locked) return;
             var pots = CrabPots.I;
             var dredge = Dredge.I;
             var ice = SeaHazards.I;
@@ -28,7 +28,7 @@ namespace Saltmoss
                 act = () => pots.Haul(boat, pot);
             }
             else if (dredge != null && dredge.CanDredge(boat)) { interact = "Lower the dredge"; act = () => dredge.Lower(boat); }
-            else if (Vector3.Distance(pos, boat.berthPos) < 12f && spd < 3f) { interact = "Tie up at the berth"; act = boat.TieUp; }
+            else if (boat.LeftBerth && Vector3.Distance(pos, boat.berthPos) < 12f && spd < 3f) { interact = "Tie up at the berth"; act = boat.TieUp; }
             else if (ice != null && ice.CanChip(boat)) { interact = "Knock off the ice"; act = () => ice.Chip(boat); }
             else if (pots != null && pots.CanDrop(boat)) { interact = $"Drop a crab pot ({CrabPots.OnDeck} aboard)"; act = () => pots.Drop(boat); }
             else if (pot != null) interact = "Slow down to haul";

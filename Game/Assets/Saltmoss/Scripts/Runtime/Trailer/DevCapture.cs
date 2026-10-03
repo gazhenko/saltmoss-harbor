@@ -114,6 +114,12 @@ namespace Saltmoss
                 b.puppet?.Snap();
                 CameraRig.I?.SnapBehindTarget();
             }
+            if (CommandLine.Has("-atBoard") && BoatController.I != null)
+            {
+                // stand Pip on the floating dock by the Sally Mae, ready to board
+                PlayerController.I?.Teleport(BoatController.I.boardPoint, BoatController.I.boardYaw);
+                CameraRig.I?.SnapBehindTarget();
+            }
             int pots = (int)CommandLine.GetFloat("-pots", 0);
             if (pots > 0 && BoatController.I != null)
             {
