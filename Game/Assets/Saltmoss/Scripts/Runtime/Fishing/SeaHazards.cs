@@ -73,8 +73,8 @@ namespace Saltmoss
             }
             float facing = Vector3.Angle(boat.transform.forward, from);
             AudioDirector.Play("wave_crash_big", boat.transform.position, 1f, 0f);
-            for (int i = 0; i < 18; i++)
-                CottonPuff.Emit(boat.transform.position + from * 3f + Random.insideUnitSphere * 2.5f, Color.white, 0.8f, new Vector3(Random.Range(-2f, 2f), Random.Range(3f, 7f), Random.Range(-2f, 2f)) - from * 2f, 1.3f);
+            for (int i = 0; i < 22; i++)
+                CottonPuff.Emit(boat.transform.position + from * 3.5f + Random.insideUnitSphere * 2f + Vector3.up * 0.5f, new Color(1.5f, 1.5f, 1.5f), 1f, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(1.2f, 3.2f), Random.Range(-2f, 2f)) - from * 2f, 1.1f);
             if (boat.puppet != null) boat.puppet.offsetRot *= Quaternion.Euler(facing < 40f ? -14f : 0f, 0, facing < 40f ? 0f : (Vector3.Dot(boat.transform.right, from) > 0 ? -18f : 18f));
             if (facing < 40f || (GameState.Has("hull") && facing < 60f))
             {

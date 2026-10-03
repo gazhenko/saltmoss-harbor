@@ -7,14 +7,15 @@ namespace Saltmoss
     public class ForecastBoard : MonoBehaviour
     {
         public TextMeshPro text;
-        int shownDay = -1, shownWeather = -1;
+        int shownDay = -1, shownWeather = -1, shownForecast = -1;
 
         void Update()
         {
             var D = GameState.D;
-            if (text == null || (shownDay == D.day && shownWeather == D.weather)) return;
+            if (text == null || (shownDay == D.day && shownWeather == D.weather && shownForecast == D.forecast)) return;
             shownDay = D.day;
             shownWeather = D.weather;
+            shownForecast = D.forecast;
             text.text = $"<size=130%>FORECAST</size>\nToday: {GameFlow.WeatherName(D.weather)}\nTomorrow: {GameFlow.WeatherName(D.forecast)}";
         }
     }

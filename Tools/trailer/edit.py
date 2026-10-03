@@ -111,7 +111,7 @@ def main():
     filt.append(f"{''.join(labels)}amix=inputs={len(labels)}:normalize=0,alimiter=limit=0.95[a]")
     pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     ff("-i", video, *inputs, "-filter_complex", ";".join(filt), "-map", "0:v", "-map", "[a]",
-       "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "320k", "-movflags", "+faststart", "-t", t, a.out)
+       "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart", "-t", t, a.out)
     print("trailer:", a.out, f"{t:.1f}s")
 
     # GIF teaser for the README (first drop section if marked, else 24.5s..33s)

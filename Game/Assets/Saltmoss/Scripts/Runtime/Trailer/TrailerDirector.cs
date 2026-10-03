@@ -112,7 +112,7 @@ namespace Saltmoss
             {
                 Hour(8.6f);
                 Pip.Teleport(new Vector3(0f, 1.8f, 3f), 0f);
-            }, t => Dolly(new Vector3(1.3f, 2.8f, 15f), new Vector3(1.0f, 2.6f, 16.5f), Pip.transform.position + Vector3.up * 0.6f, Pip.transform.position + Vector3.up * 0.6f, t, 30f)).tick = t =>
+            }, t => Dolly(new Vector3(0.25f, 2.7f, 15f), new Vector3(0.15f, 2.55f, 16.5f), Pip.transform.position + Vector3.up * 0.6f, Pip.transform.position + Vector3.up * 0.6f, t, 30f)).tick = t =>
             {
                 Pip.anim.speed = 1.6f;
                 Pip.transform.position += Vector3.forward * 1.6f * Time.deltaTime;
@@ -166,7 +166,7 @@ namespace Saltmoss
             {
                 var b = Boat;
                 AudioDirector.Play("wave_crash_big", b.transform.position, 1f, 0f);
-                for (int i = 0; i < 26; i++) CottonPuff.Emit(b.transform.position + b.transform.forward * 4f + UnityEngine.Random.insideUnitSphere * 2.5f, Color.white, 0.9f, new Vector3(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(3f, 8f), UnityEngine.Random.Range(-3f, 1f)), 1.5f);
+                for (int i = 0; i < 30; i++) CottonPuff.Emit(b.transform.position + b.transform.forward * 4.5f + UnityEngine.Random.insideUnitSphere * 2f + Vector3.up * 0.5f, new Color(1.5f, 1.5f, 1.5f), 1.1f, new Vector3(UnityEngine.Random.Range(-2.5f, 2.5f), UnityEngine.Random.Range(1.2f, 3.2f), UnityEngine.Random.Range(-2f, 1f)), 1.1f);
                 if (b.puppet != null) b.puppet.offsetRot *= Quaternion.Euler(-16f, 0, 8f);
             }));
 
@@ -248,7 +248,7 @@ namespace Saltmoss
             }, t =>
             {
                 var c = inkwell != null ? inkwell : R.museumDoor;
-                return Dolly(A(c, 3.2f, 1.7f, 4.5f), A(c, 1.6f, 1.5f, 4.2f), c.position + Vector3.up * 1.1f, c.position + Vector3.up * 1.0f, t, 34f);
+                return Dolly(A(c, -3.2f, 1.8f, 1.4f), A(c, -2.6f, 1.6f, 0.9f), c.position + Vector3.up * 1.0f + c.right * 0.6f, c.position + Vector3.up * 0.95f + c.right * 0.4f, t, 38f);
             });
 
             Add("shelby", 3.5f, () =>

@@ -128,16 +128,16 @@ Download the archive for your computer from the [latest release](../../releases/
 
 - **macOS** (Apple Silicon + Intel): unzip, right-click `Saltmoss Harbor.app` → Open (the build is ad-hoc signed, not
   notarized). If macOS says it is damaged: `xattr -dr com.apple.quarantine "Saltmoss Harbor.app"`.
-- **Windows** (x64): extract the zip into a new folder and run `SaltmossHarbor.exe`. VERIFY_WIN
+- **Windows** (x64): extract the zip into a new folder and run `SaltmossHarbor.exe`. The Windows player is built from the same source as the others but hasn't been run on Windows yet; please report problems in an issue.
 - **Linux** (x64): extract into a new folder with `tar -xzf SaltmossHarbor-v1.0.0-Linux-x64.tar.gz`, then
   `chmod +x SaltmossHarbor.x86_64 && ./SaltmossHarbor.x86_64` (Vulkan or OpenGL 4.5).
 
 The Windows and Linux archives have no top-level folder, so extract them into an empty folder of their own.
 
-Saves (`saltmoss_save.json`, with a `.bak` of the previous one) and `Player.log` live in
-`~/Library/Application Support/Gazhenko/Saltmoss Harbor/` on macOS, `%USERPROFILE%\AppData\LocalLow\Gazhenko\Saltmoss Harbor\`
-on Windows and `~/.config/unity3d/Gazhenko/Saltmoss Harbor/` on Linux. The game saves when Pip goes to bed (and from
-the pause menu).
+Saves (`saltmoss_save.json`, with a `.bak` of the previous one) live in `~/Library/Application Support/com.gazhenko.saltmoss/`
+on macOS, `%USERPROFILE%\AppData\LocalLow\Gazhenko\Saltmoss Harbor\` on Windows and `~/.config/unity3d/Gazhenko/Saltmoss Harbor/`
+on Linux; `Player.log` is in `~/Library/Logs/Gazhenko/Saltmoss Harbor/` on macOS and next to the saves elsewhere. The game
+saves when Pip goes to bed (and from the pause menu).
 
 ## Building from source
 
