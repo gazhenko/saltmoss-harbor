@@ -1,0 +1,277 @@
+{
+  "file": "trailer.ogg",
+  "duration": 72.0,
+  "sections": [
+    {
+      "name": "intro",
+      "start": 0.0,
+      "end": 12.0,
+      "desc": "music box plays the motif over the sea"
+    },
+    {
+      "name": "build",
+      "start": 12.0,
+      "end": 30.0,
+      "desc": "ukulele + whistle enter with the motif; timpani/strings swell at 28 s"
+    },
+    {
+      "name": "storm_hit",
+      "start": 30.0,
+      "end": 33.0,
+      "desc": "storm hit: timpani, gran cassa, low strings, accordion stabs in D minor"
+    },
+    {
+      "name": "shanty",
+      "start": 33.0,
+      "end": 58.0,
+      "desc": "full joyful shanty: motif A2 + B strain, everyone playing"
+    },
+    {
+      "name": "resolve",
+      "start": 58.0,
+      "end": 68.0,
+      "desc": "warm resolve: slower, celesta + accordion, ritardando into the button"
+    },
+    {
+      "name": "button",
+      "start": 68.0,
+      "end": 72.0,
+      "desc": "button chord + ship's bell ring-out"
+    }
+  ],
+  "hits": [
+    {
+      "t": 12.0,
+      "label": "build downbeat (uke + whistle enter)"
+    },
+    {
+      "t": 30.0,
+      "label": "STORM HIT (big)"
+    },
+    {
+      "t": 30.75,
+      "label": "storm accent"
+    },
+    {
+      "t": 31.5,
+      "label": "storm accent"
+    },
+    {
+      "t": 32.25,
+      "label": "pickup into shanty"
+    },
+    {
+      "t": 32.5,
+      "label": "pickup into shanty"
+    },
+    {
+      "t": 32.75,
+      "label": "pickup into shanty"
+    },
+    {
+      "t": 33.0,
+      "label": "SHANTY downbeat (D major, tutti)"
+    },
+    {
+      "t": 33.0,
+      "label": "phrase downbeat"
+    },
+    {
+      "t": 39.25,
+      "label": "phrase downbeat"
+    },
+    {
+      "t": 45.5,
+      "label": "phrase downbeat"
+    },
+    {
+      "t": 51.75,
+      "label": "phrase downbeat"
+    },
+    {
+      "t": 58.0,
+      "label": "resolve downbeat"
+    },
+    {
+      "t": 68.0,
+      "label": "BUTTON (tutti D) + ship's bell"
+    },
+    {
+      "t": 68.55,
+      "label": "bell second strike"
+    }
+  ],
+  "downbeats": [
+    {
+      "t": 0.0,
+      "section": "intro"
+    },
+    {
+      "t": 2.0,
+      "section": "intro"
+    },
+    {
+      "t": 4.0,
+      "section": "intro"
+    },
+    {
+      "t": 6.0,
+      "section": "intro"
+    },
+    {
+      "t": 8.0,
+      "section": "intro"
+    },
+    {
+      "t": 10.0,
+      "section": "intro"
+    },
+    {
+      "t": 12.0,
+      "section": "build"
+    },
+    {
+      "t": 14.0,
+      "section": "build"
+    },
+    {
+      "t": 16.0,
+      "section": "build"
+    },
+    {
+      "t": 18.0,
+      "section": "build"
+    },
+    {
+      "t": 20.0,
+      "section": "build"
+    },
+    {
+      "t": 22.0,
+      "section": "build"
+    },
+    {
+      "t": 24.0,
+      "section": "build"
+    },
+    {
+      "t": 26.0,
+      "section": "build"
+    },
+    {
+      "t": 28.0,
+      "section": "build"
+    },
+    {
+      "t": 30.0,
+      "section": "storm_hit"
+    },
+    {
+      "t": 31.5,
+      "section": "storm_hit"
+    },
+    {
+      "t": 33.0,
+      "section": "shanty"
+    },
+    {
+      "t": 34.562,
+      "section": "shanty"
+    },
+    {
+      "t": 36.125,
+      "section": "shanty"
+    },
+    {
+      "t": 37.688,
+      "section": "shanty"
+    },
+    {
+      "t": 39.25,
+      "section": "shanty"
+    },
+    {
+      "t": 40.812,
+      "section": "shanty"
+    },
+    {
+      "t": 42.375,
+      "section": "shanty"
+    },
+    {
+      "t": 43.938,
+      "section": "shanty"
+    },
+    {
+      "t": 45.5,
+      "section": "shanty"
+    },
+    {
+      "t": 47.062,
+      "section": "shanty"
+    },
+    {
+      "t": 48.625,
+      "section": "shanty"
+    },
+    {
+      "t": 50.188,
+      "section": "shanty"
+    },
+    {
+      "t": 51.75,
+      "section": "shanty"
+    },
+    {
+      "t": 53.312,
+      "section": "shanty"
+    },
+    {
+      "t": 54.875,
+      "section": "shanty"
+    },
+    {
+      "t": 56.438,
+      "section": "shanty"
+    },
+    {
+      "t": 58.0,
+      "section": "resolve"
+    },
+    {
+      "t": 60.0,
+      "section": "resolve"
+    },
+    {
+      "t": 62.0,
+      "section": "resolve"
+    },
+    {
+      "t": 64.0,
+      "section": "resolve"
+    },
+    {
+      "t": 66.0,
+      "section": "resolve"
+    },
+    {
+      "t": 68.0,
+      "section": "button"
+    }
+  ],
+  "motif_entries": [
+    {
+      "t": 0.0,
+      "instrument": "music box"
+    },
+    {
+      "t": 12.0,
+      "instrument": "whistle"
+    },
+    {
+      "t": 33.0,
+      "instrument": "tutti (accordion/whistle/glock, fiddle harmony)"
+    }
+  ],
+  "note": "Times in seconds from the start of trailer.ogg (44.1 kHz, exactly 72.000 s)."
+}

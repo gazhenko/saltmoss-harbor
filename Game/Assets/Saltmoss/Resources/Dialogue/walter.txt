@@ -1,0 +1,142 @@
+# Walter — the walrus harbormaster. Gruff, kind, all moustache.
+
+=== intro
+!mumble walter ahoy!
+!gesture walter Wave
+@walter happy: Well, well! If it isn't little {name}, all grown up and standing on my pier!{p} Ahoy there, skipper!
+@pip surprised: Walter! You haven't changed a bit. Is that the same moustache?
+@walter smug: Same moustache, same walrus. I keep it trimmed for special occasions.{p} [happy]This is one.
+@walter sad: Saltmoss has been {w}awfully quiet{/w} since your gran hung up her sou'wester.{p} The cannery's shut. Half the lanterns are dark.
+@walter neutral: But she left you two things, and both of 'em still float. Mostly.
+!gesture walter Point
+@walter happy: The Sally Mae, tied up at the berth yonder.{p} And the Salty Puffin — her fish shop on the pier.
+@pip determined: Then I'm going to fill that shop with the best catch on the Grey Sea!
+@walter laugh: HAR! {s}That's the spirit!{/s}{p} [happy]Your gran said those exact words, forty years ago, on this exact plank.
+@walter neutral: Go and say hello to Nell at the Salty Puffin. She's been keeping the counter warm.{p} Then come and see me before you take the boat out.
+!flag intro_done
+
+=== walter_hub
+!if flag:ceremony_pending -> walter_ceremony
+!if !flag:met_nell and !flag:met_walter -> walter_see_nell
+!if !flag:met_walter -> walter_first
+!mumble walter
+@walter neutral: What can I do for you, skipper?
+? What's the weather doing? -> walter_weather
+? Can you fix up the Sally Mae? -> walter_yard
+? How's the harbour coming along? -> walter_progress
+? Any tips for the sea? -> walter_tips
+? Just saying hello! -> walter_bye
+
+=== walter_see_nell
+!mumble walter hrrm
+@walter happy: Pop along to the Salty Puffin first and say hello to Nell. Then come back and I'll show you the Sally Mae's ropes.
+!gesture walter Point
+
+=== walter_first
+!flag met_walter
+@walter happy: There you are! Met Nell, did you? She'll have fed you three bowls of chowder.
+@pip happy: Four. One was "a taster".
+@walter laugh: HAR! That's Nell.{p} [neutral]Right then. The Sally Mae. She's old, she creaks, and she's the best crab boat on this coast.
+@walter neutral: Steer with {c=#c24a3a}W A S D{/c} or the stick. Hold {c=#c24a3a}Shift{/c} to open her up. Toot the horn with {c=#c24a3a}H{/c} if you're feeling jolly.
+@walter thinking: Out past the harbour mouth there's three grounds. The Shallows are gentle. Kelp Reach gets lively.{p} [worried]And the Grey Deep…{pp} the Grey Deep is where the king crab live. And the storms.
+@walter neutral: Drop your crab pots when she's going slow, leave 'em to soak, then come back and haul.{p} Keep the winch needle in the green or the line just groans at you.
+@walter happy: Cast a line at the fish shadows. Look for glimmers on the water — that's treasure down below. Old Inkwell will want anything shiny for his museum.
+@walter smug: And if you see a rogue wave coming? Point her nose straight at it. Never take one on the side.
+@walter happy: Off you go, skipper. The sea's been waiting for you.
+!gesture walter Wave
+
+=== walter_weather
+!event forecast
+@walter thinking: Today's {today}, and tomorrow looks {tomorrow}.
+@walter neutral: Out in the Deep it'll be {sea}.
+!if storm -> walter_weather_storm
+-> walter_hub_more
+
+=== walter_weather_storm
+@walter worried: Rough day. If the ice builds up on her rails, knock it off with the mallet. She gets sluggish when she's wearing a frozen coat.
+-> walter_hub_more
+
+=== walter_yard
+@walter smug: The boatyard's open! Let's see what she needs.
+!event upgrades boat
+@walter happy: She'll thank you for it. Boats are like that.
+-> walter_hub_more
+
+=== walter_progress
+!event restoration
+!if restoration>=3 -> walter_progress_done
+@walter thinking: To get the town shipshape again we need folk buying fish and Inkwell's museum full of wonders.
+@walter neutral: {progress}
+@walter happy: Every herring helps. I mean that.
+-> walter_hub_more
+
+=== walter_progress_done
+@walter laugh: Look at her, {name}! Lanterns lit, fresh paint, and that lighthouse winking at the sea like it's young again.
+@walter sad: Your gran would be… {pp}[happy]well. She'd tell you to stop standing about and go fishing!
+-> walter_hub_more
+
+=== walter_tips
+!if !flag:hauled_pot -> walter_tip_pots
+!if !flag:dredged -> walter_tip_dredge
+!if restoration<1 -> walter_tip_shop
+@walter smug: The best fish bite at the edges of the day. And the strangest ones only come up at night, or in a storm.
+@walter thinking: They say the {w}oarfish{/w} rises when the Deep gets angry. Never seen one myself. Never not looked, either.
+-> walter_hub_more
+
+=== walter_tip_pots
+@walter neutral: Pots need time. Drop one, go fish, come back. A pot that soaks overnight comes up {b}heaving{/b}.
+-> walter_hub_more
+
+=== walter_tip_dredge
+@walter neutral: See the water glimmer? Slow down and lower the dredge. Let out chain to about the right depth, then haul.
+@walter smug: Too shallow and you'll catch mud. Way off and you'll catch somebody's boot.
+-> walter_hub_more
+
+=== walter_tip_shop
+@walter neutral: Sell your catch over the counter at the Salty Puffin. Folk tip well for fresh fish.
+-> walter_hub_more
+
+=== walter_hub_more
+? Anything else? -> walter_hub
+? That's all, thanks! -> walter_bye
+
+=== walter_bye
+@walter happy: Fair winds, skipper.
+!gesture walter Wave
+
+=== walter_ceremony
+!mumble walter harumph!
+@walter happy: There you are! Stand up straight, everyone's watching.{p} [smug]Well. A few gulls are watching.
+!if restoration==0 -> walter_ceremony_1
+!if restoration==1 -> walter_ceremony_2
+-> walter_ceremony_3
+
+=== walter_ceremony_1
+@walter neutral: You've sold fish to half the coast and Inkwell won't stop talking about his new cabinets.
+@walter happy: So the town council — that's me — has decided. Tonight, {b}the lanterns get relit!{/b}
+!event ceremony
+!gesture walter Cheer
+@walter laugh: Look at that glow! {s}HAR!{/s} Saltmoss Harbor, back on the map!
+@pip laugh: It looks like when I was little!
+@walter happy: It looks like a harbour again. Keep at it, skipper. I've got more plans than moustache.
+
+=== walter_ceremony_2
+@walter smug: The pier's busy, the shop's humming and the museum's getting crowded.{p} [happy]So we've had a whip-round for paint!
+!event ceremony
+!gesture walter Cheer
+@walter laugh: Fresh paint! Bunting! The Salty Puffin looks younger than I do!
+@nell happy: {w}Ooh{/w}, isn't it lovely? I've already spilled chowder on the new sign. It's tradition now.
+@walter happy: One more job, {name}. The lighthouse. It's been dark for years. Fill that museum and sell another mountain of fish and we'll light her up.
+
+=== walter_ceremony_3
+@walter sad: Your gran used to say a harbour isn't a harbour without a light to come home by.
+@walter determined: Well. {pp}Let's give 'em one.
+!event ceremony
+!gesture walter Cheer
+@walter laugh: {b}THERE SHE SHINES!{/b}{p} Saltmoss Harbor is {w}properly alive{/w} again!
+@pip happy: Thank you, Walter. For everything.
+@walter happy: Thank YOU, skipper. Now go on. The Grey Deep's still out there and you've got a museum to finish.
+
+=== trailer_walter
+!gesture walter Wave
+@walter laugh: Ahoy there, little {name}!{p} [happy]Welcome home to {w}Saltmoss Harbor!{/w}

@@ -1,0 +1,26 @@
+{
+  "fps": 24,
+  "gif_start": 33.0,
+  "gif_dur": 9.0,
+  "segments": [
+    {"type": "card", "png": "c_title", "dur": 4.0, "zoom": 0.04, "over": "dawn_harbor", "over_in": 0.0},
+    {"type": "clip", "src": "dawn_harbor", "in": 2.0, "dur": 4.0, "game_audio": 0.5},
+    {"type": "clip", "src": "pip_pier", "in": 0.3, "dur": 4.0, "game_audio": 0.6},
+    {"type": "clip", "src": "walter_talk", "in": 0.0, "dur": 5.5, "game_audio": 1.0},
+    {"type": "clip", "src": "nell_shop", "in": 0.3, "dur": 3.5, "game_audio": 0.7},
+    {"type": "card", "png": "c_sea", "dur": 3.0, "zoom": 0.05, "over": "boat_out", "over_in": 0.0},
+    {"type": "clip", "src": "boat_out", "in": 0.5, "dur": 6.0, "game_audio": 0.6},
+    {"type": "clip", "src": "storm_hit", "in": 0.8, "dur": 3.0, "game_audio": 0.9, "flash": true},
+    {"type": "clip", "src": "haul_pot", "in": 1.2, "dur": 3.125, "game_audio": 0.6},
+    {"type": "clip", "src": "cast_catch", "in": 1.6, "dur": 3.125, "game_audio": 0.7},
+    {"type": "clip", "src": "treasure", "in": 1.2, "dur": 3.125, "game_audio": 0.7},
+    {"type": "clip", "src": "shop_rush", "in": 2.4, "dur": 3.125, "game_audio": 0.7},
+    {"type": "clip", "src": "museum", "in": 0.8, "dur": 3.125, "game_audio": 0.6},
+    {"type": "clip", "src": "shelby", "in": 0.2, "dur": 3.125, "game_audio": 0.9},
+    {"type": "clip", "src": "deep_sail", "in": 0.2, "dur": 3.125, "game_audio": 0.7},
+    {"type": "card", "png": "c_home", "dur": 3.125, "zoom": 0.04, "over": "lanterns_night", "over_in": 0.0},
+    {"type": "clip", "src": "lanterns_night", "in": 1.5, "dur": 4.5, "game_audio": 0.5},
+    {"type": "clip", "src": "sunset_home", "in": 1.0, "dur": 5.5, "game_audio": 0.5},
+    {"type": "card", "png": "c_end", "dur": 4.0, "zoom": 0.03, "over": "logo_bg", "over_in": 0.5}
+  ]
+}

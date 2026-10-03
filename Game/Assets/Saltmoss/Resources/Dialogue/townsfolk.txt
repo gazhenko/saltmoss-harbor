@@ -1,0 +1,209 @@
+# Marge (pelican postmistress), Professor Inkwell (octopus curator), Shelby (hermit crab kid), and odds and ends.
+
+# ------------------------------------------------------------------ Marge
+=== marge_hub
+!if !flag:met_marge -> marge_first
+!mumble marge
+@marge neutral: Saltmoss Post Office, Marge speaking. {p}[smug]Well — Marge standing. What can I do for you, dear?
+? Send off my orders -> marge_send | if orders>0
+? Any letters for me? -> marge_letters
+? Any gossip? -> marge_gossip
+? Just passing by! -> marge_bye
+
+=== marge_first
+!flag met_marge
+!mumble marge well!
+@marge surprised: Well! {pp}[happy]Well, well, {b}well{/b}. You must be {name}. I'd know that beak anywhere.
+@marge smug: I'm Marge. Postmistress, notice-board keeper, and the only bird on this pier who knows how to use a semicolon.
+@marge neutral: Folk up and down the coast still write in asking for Saltmoss fish. Nobody's been able to send any for years.
+@marge happy: Now that you're here — I'll pass their letters along. You bring me the catch, I'll pop it in the post, and they'll pay you {w}very nicely{/w}.
+!event new_letter
+@marge thinking: Ah! Here's one already. Check your journal for the details, dear.
+@pip happy: I'll get right on it!
+@marge happy: Splendid. I do love a punctual puffin.
+
+=== marge_send
+!event letters
+!if var:letters== -> marge_send_none
+@marge happy: {letters}{p} Into the post bag they go!
+!gesture marge Nod
+@marge smug: Your customers will be absolutely {w}delighted{/w}. I'll make sure the stamps are straight.
+-> marge_more
+
+=== marge_send_none
+@marge worried: Oh dear, you haven't got everything they asked for yet. Have a look in your journal, dear.
+-> marge_more
+
+=== marge_letters
+!if orders==0 -> marge_letters_none
+@marge neutral: You've got {b}some{/b} letters waiting! They're in your journal, under "Letters". I read none of them. Officially.
+-> marge_more
+
+=== marge_letters_none
+@marge neutral: Nothing today, dear. I sort the post every other morning. Come back tomorrow!
+-> marge_more
+
+=== marge_gossip
+!if restoration==0 -> marge_gossip_0
+!if restoration==1 -> marge_gossip_1
+@marge smug: The whole coast is talking about Saltmoss again. Three letters this week asked if the lighthouse is really lit. {p}[happy]I said yes. With feeling.
+-> marge_more
+
+=== marge_gossip_0
+@marge thinking: Between you and me — Walter has been polishing his captain's cap every single morning since you arrived.
+@marge smug: And Professor Inkwell has written to the Royal Society of Marine Curiosities {b}eleven{/b} times. They've replied once.
+@marge worried: And that hermit-crab child keeps posting letters to the sea. I don't know who she thinks is going to answer.
+-> marge_more
+
+=== marge_gossip_1
+@marge happy: The lanterns are lit and the pier's full of customers! I had to buy a second post bag.
+-> marge_more
+
+=== marge_more
+? Something else -> marge_hub
+? Goodbye, Marge! -> marge_bye
+
+=== marge_bye
+@marge happy: Toodle-oo, dear!
+!gesture marge Wave
+
+# ------------------------------------------------------------------ Professor Inkwell
+=== inkwell_hub
+!if !flag:met_inkwell -> inkwell_first
+!mumble inkwell
+@inkwell happy: Ah, {name}! Welcome, welcome to the Tidewrack Museum! Have you brought me wonders?
+? I have something to donate! -> inkwell_donate
+? Buy my extra treasures? -> inkwell_dupes
+? Tell me about the museum -> inkwell_about
+? Just looking around -> inkwell_bye
+
+=== inkwell_first
+!flag met_inkwell
+!mumble inkwell oho!
+!gesture inkwell Bow
+@inkwell surprised: Oh! A visitor! A {b}real{/b} visitor! [happy]Do come in, mind the drip, the roof is a boat. It's a long story.
+@inkwell smug: Professor Inkwell, curator of the Tidewrack Museum. Eight arms, one monocle and an {w}insatiable{/w} curiosity.
+@inkwell sad: The museum has been rather… [thinking]{spd=0.6}sparse{spd=1}. I have a lovely shelf of nothing, and a slightly larger shelf of {s}also nothing{/s}.
+@inkwell happy: But you have a boat! And a dredge! Anything you find on the seabed — anything at all — bring it to me.
+@inkwell neutral: The first of every fish and crab you catch, too. For science.{p} [smug]And for the cabinets. Mostly for the cabinets.
+@pip happy: I'll fill every shelf!
+@inkwell laugh: {b}Splendid!{/b} Oh, I could hug you. I could hug you eight times.
+!if has:message_bottle -> inkwell_donate
+!if has:sea_glass -> inkwell_donate
+
+=== inkwell_donate
+@inkwell happy: Let's see what you've brought, shall we?
+!event donate
+@inkwell happy: Splendid, splendid. Do come back soon — the sea has a great deal more to show us.
+-> inkwell_more
+
+=== inkwell_dupes
+!event sell_dupes
+!if var:dupes==0 -> inkwell_dupes_none
+@inkwell happy: {dupes} duplicate treasures for my lending cabinet! Here's {dupepay} sand dollars. Knowledge should travel, I always say.
+-> inkwell_more
+
+=== inkwell_dupes_none
+@inkwell thinking: Hmm, nothing I haven't already got on display. If you find a second of anything, I'll buy it for the lending cabinet.
+-> inkwell_more
+
+=== inkwell_about
+@inkwell smug: The Tidewrack is built inside the hull of the Persistence, the biggest trawler Saltmoss ever had. She washed up in the great storm and simply… stayed.
+@inkwell happy: So I turned her upside down and filled her with wonders! Fish in the tanks along the left, treasures in the cabinets on the right.
+@inkwell thinking: There's a legend about a crown at the bottom of the Grey Deep. And a sea serpent that rises when the waves go mad.{p} [smug]Legends are just facts that haven't been dredged up yet.
+-> inkwell_more
+
+=== inkwell_more
+? Something else -> inkwell_hub
+? Goodbye, Professor! -> inkwell_bye
+
+=== inkwell_bye
+@inkwell happy: Farewell! Curiosity be with you!
+!gesture inkwell Wave
+
+# ------------------------------------------------------------------ Shelby
+=== shelby_hub
+!if !flag:met_shelby -> shelby_first
+!mumble shelby
+!if has:grand_conch and !flag:shelby_home -> shelby_conch
+!if has:sea_glass and !flag:shelby_glass -> shelby_glass
+@shelby happy: Hi {name}! {w}Hiiii!{/w} Did you find anything SHINY?
+? What are you doing? -> shelby_doing
+? Here's a sticker for you! -> shelby_sticker | unless flag:shelby_sticker
+? See you, Shelby! -> shelby_bye
+
+=== shelby_first
+!flag met_shelby
+!mumble shelby wow!
+!gesture shelby Hop
+@shelby surprised: WHOA! A puffin! A REAL puffin! [happy]Are you a sea captain? You've got a captain hat!
+@pip laugh: It's a sou'wester. But… I suppose I'm a captain now!
+@shelby laugh: {s}AWESOME!{/s} I'm Shelby! I live in this shell! It's {spd=0.5}a bit{spd=1} small.
+@shelby worried: Like, really small. My legs stick out when I sleep. {pp}[determined]One day I'm gonna find the biggest, swirliest, most AMAZING shell in the whole ocean.
+@shelby happy: Oh! And I collect sea glass! If you find any, can I see? Pleeeease?
+!gesture shelby Hop
+
+=== shelby_glass
+!flag shelby_glass
+@shelby surprised: Is that… is that {b}SEA GLASS{/b}?! [laugh]Ohhh it's so pretty! It's like a frozen bit of sky!
+@shelby happy: Can I have one? I'll give you my best sticker! It's a whale! It's {w}shiny{/w}!
+!take sea_glass 1
+!money 30
+@shelby laugh: Yesss! Thank you! You're the best captain EVER!
+@pip happy: (Shelby gave me 30 sand dollars too. I think they're from a piggy bank.)
+-> shelby_bye
+
+=== shelby_conch
+!flag shelby_home
+@shelby surprised: {pp}{b}{s}Is that a GRAND CONCH?!{/s}{/b}
+@shelby sad: It's so big. And swirly. And… and… [laugh]it's PERFECT!
+@pip happy: I found it in the Kelp Reach. I think it was waiting for you.
+!take grand_conch 1
+!gesture shelby Cheer
+@shelby laugh: I'm gonna move in RIGHT NOW! I'll put my stickers on the walls and my sea glass on a little shelf and—
+@shelby happy: Here! My whole sticker collection — and my savings! You're my best friend!
+!money 150
+!jingle jingle_restoration
+-> shelby_bye
+
+=== shelby_sticker
+!flag shelby_sticker
+@shelby surprised: A STICKER? For ME? [laugh]It's a puffin! It looks just like you!
+@shelby happy: I'm putting it right on top of my shell where everyone can see!
+-> shelby_bye
+
+=== shelby_doing
+@shelby thinking: I'm watching the tide pools! There's a crab in there who's my rival. He has a {s}better shell than me{/s}.
+@shelby determined: But one day…
+-> shelby_hub
+
+=== shelby_bye
+@shelby happy: Bye bye! Find me something shiny!
+!gesture shelby Wave
+
+# ------------------------------------------------------------------ odds and ends
+=== forecast_board
+!event forecast
+@narrator neutral: {b}SALTMOSS HARBOUR — WEATHER{/b}{p} Today: {today}. Tomorrow: {tomorrow}.{p} Out in the Deep: {sea}.
+@narrator neutral: Underneath, in Walter's careful chalk: {w}"Always take a wave on the bow."{/w}
+
+=== pip_door
+!if hour<17 -> pip_door_day
+@pip sleepy: Home sweet shack. Gran's quilt is still on the bed.
+? Sleep until morning -> pip_sleep
+? Not yet -> end
+
+=== pip_door_day
+@pip neutral: Gran's old shack. I'll head in once the sun goes down.
+? Have a nap until tomorrow anyway -> pip_sleep
+? Back to work! -> end
+
+=== pip_sleep
+!event save
+!event sleep
+
+=== boat_locked
+@pip thinking: The Sally Mae! I should talk to Walter at the harbour office before I take her out.
+
+=== boat_late
+@pip sleepy: It's far too late to go out to sea. Even the fish are asleep.

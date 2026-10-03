@@ -1,0 +1,79 @@
+# Nell — the sea otter who keeps the Salty Puffin's counter. Warm, chatty, thinks in chowder.
+
+=== nell_hub
+!if !flag:met_nell -> nell_first
+!mumble nell
+@nell happy: Hiya, {name}! What's cooking? {p}[laugh]Besides my chowder. Obviously.
+? Open the shop -> nell_open | if stock>0
+? Open the shop -> shop_empty | if stock==0
+? Let's fix up the shop -> nell_upgrades
+? Buy my junk? -> nell_junk
+? How's business? -> nell_business
+? Any chowder going? -> nell_chowder
+? See you later! -> nell_bye
+
+=== nell_first
+!flag met_nell
+!mumble nell oh hey!
+!gesture nell Hop
+@nell surprised: {b}{name}!{/b} Oh my whiskers, look at you! You've got your gran's beak!
+@nell happy: I'm Nell. I've been minding the Salty Puffin since… well, since it stopped being a fish shop and started being a {w}very sad shed{/w}.
+@nell worried: The ice trays are empty, the sign's peeling and the only customer this week was a gull asking for directions.
+@pip determined: Not for long! I'm going to fill those trays.
+@nell laugh: Ha! I like you already. Again!
+@nell neutral: Here's how it works. Whatever you catch goes in the hold. Tie the Sally Mae up at the berth and Walter's crane swings it all into our cold store.
+@nell happy: Then you stand at this counter, press {c=#c24a3a}open{/c}, and folk come down the pier asking for things. Give 'em what they ask for and they tip.
+@nell smug: And while you're out at sea, I'll sell a bit for you. Friends' rates. Friendly-ish.
+@nell happy: Now go and see Walter about the boat! And bring me something {b}chowder-worthy{/b}!
+!gesture nell Wave
+
+=== nell_open
+@nell happy: Shop's open! Get behind the counter.
+!event open_shop
+
+=== nell_upgrades
+@nell thinking: Ooh, I've got {b}ideas{/b}. Crushed ice! Lanterns! Bunting! {s}SO much bunting.{/s}
+!event upgrades shop
+@nell happy: It's looking more like a real shop every day.
+-> nell_more
+
+=== nell_junk
+!event sell_junk
+!if var:junk==0 -> nell_junk_none
+@nell happy: {junk} bits of junk! Out of the sea and into the bin, where they belong. Here's {junkpay} sand dollars for the trouble.
+@nell smug: Every boot you haul up is a boot a crab doesn't have to live in. Well — some crabs like boots. But still.
+-> nell_more
+
+=== nell_junk_none
+@nell neutral: You haven't got any junk on you! Old boots, tin cans, tangled nets — bring 'em by and I'll pay a sand dollar or two.
+-> nell_more
+
+=== nell_business
+!event restoration
+!if sales<200 -> nell_business_slow
+@nell happy: Business is {w}booming{/w}! Well — burbling. Gently boiling.
+@nell neutral: {progress}
+-> nell_more
+
+=== nell_business_slow
+@nell worried: Slow, so far. We need fish in the trays! Herring, mackerel, crabs — anything with fins or pinchers.
+-> nell_more
+
+=== nell_chowder
+@nell laugh: Always! Here.
+!sfx item_get
+@pip happy: Mmm! What's in it?
+@nell smug: Secret recipe. [thinking]It's mostly potatoes. [happy]And love. And a {s}suspicious{/s} amount of pepper.
+-> nell_more
+
+=== nell_more
+? Something else -> nell_hub
+? Bye, Nell! -> nell_bye
+
+=== nell_bye
+@nell happy: Mind the gulls! They steal.
+!gesture nell Wave
+
+=== shop_empty
+@nell worried: The cold store's empty, {name}! Nothing to sell yet.
+@nell neutral: Take the Sally Mae out, catch something, and tie up at the berth. The crane does the rest.

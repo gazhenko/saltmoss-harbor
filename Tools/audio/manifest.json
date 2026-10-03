@@ -1,0 +1,746 @@
+[
+  {
+    "file": "museum.ogg",
+    "kind": "music",
+    "seconds": 80.0,
+    "loop": true,
+    "lufs": -15.99,
+    "peak_db": -1.94
+  },
+  {
+    "file": "sea_calm.ogg",
+    "kind": "music",
+    "seconds": 120.0,
+    "loop": true,
+    "lufs": -15.99,
+    "peak_db": -3.27
+  },
+  {
+    "file": "sea_storm.ogg",
+    "kind": "music",
+    "seconds": 90.0,
+    "loop": true,
+    "lufs": -15.99,
+    "peak_db": -1.89
+  },
+  {
+    "file": "shop.ogg",
+    "kind": "music",
+    "seconds": 80.0,
+    "loop": true,
+    "lufs": -16.0,
+    "peak_db": -1.37
+  },
+  {
+    "file": "title_theme.ogg",
+    "kind": "music",
+    "seconds": 86.4,
+    "loop": true,
+    "lufs": -15.99,
+    "peak_db": -1.74
+  },
+  {
+    "file": "town_day.ogg",
+    "kind": "music",
+    "seconds": 120.0,
+    "loop": true,
+    "lufs": -16.0,
+    "peak_db": -1.97
+  },
+  {
+    "file": "town_night.ogg",
+    "kind": "music",
+    "seconds": 90.0,
+    "loop": true,
+    "lufs": -15.97,
+    "peak_db": -1.66
+  },
+  {
+    "file": "trailer.ogg",
+    "kind": "music",
+    "seconds": 72.0,
+    "loop": false,
+    "lufs": -16.0,
+    "peak_db": -1.46
+  },
+  {
+    "file": "jingle_catch_big.ogg",
+    "kind": "jingle",
+    "seconds": 3.0,
+    "loop": false,
+    "lufs": -14.99,
+    "peak_db": -1.68
+  },
+  {
+    "file": "jingle_catch_small.ogg",
+    "kind": "jingle",
+    "seconds": 1.5,
+    "loop": false,
+    "lufs": -14.98,
+    "peak_db": -2.4
+  },
+  {
+    "file": "jingle_day_start.ogg",
+    "kind": "jingle",
+    "seconds": 3.2,
+    "loop": false,
+    "lufs": -15.11,
+    "peak_db": -1.39
+  },
+  {
+    "file": "jingle_donation.ogg",
+    "kind": "jingle",
+    "seconds": 2.2,
+    "loop": false,
+    "lufs": -14.98,
+    "peak_db": -5.36
+  },
+  {
+    "file": "jingle_restoration.ogg",
+    "kind": "jingle",
+    "seconds": 5.0,
+    "loop": false,
+    "lufs": -15.06,
+    "peak_db": -1.44
+  },
+  {
+    "file": "jingle_sale.ogg",
+    "kind": "jingle",
+    "seconds": 1.0,
+    "loop": false,
+    "lufs": -14.98,
+    "peak_db": -5.27
+  },
+  {
+    "file": "jingle_treasure.ogg",
+    "kind": "jingle",
+    "seconds": 3.2,
+    "loop": false,
+    "lufs": -14.98,
+    "peak_db": -2.51
+  },
+  {
+    "file": "jingle_upgrade.ogg",
+    "kind": "jingle",
+    "seconds": 2.5,
+    "loop": false,
+    "lufs": -14.99,
+    "peak_db": -1.75
+  },
+  {
+    "file": "amb_harbor_day.wav",
+    "kind": "ambience",
+    "seconds": 32.0,
+    "loop": true,
+    "lufs": -23.98,
+    "peak_db": -8.83
+  },
+  {
+    "file": "amb_harbor_night.wav",
+    "kind": "ambience",
+    "seconds": 30.0,
+    "loop": true,
+    "lufs": -23.99,
+    "peak_db": -5.61
+  },
+  {
+    "file": "amb_rain_roof.wav",
+    "kind": "ambience",
+    "seconds": 24.0,
+    "loop": true,
+    "lufs": -24.0,
+    "peak_db": -9.89
+  },
+  {
+    "file": "amb_sea_calm.wav",
+    "kind": "ambience",
+    "seconds": 30.0,
+    "loop": true,
+    "lufs": -24.0,
+    "peak_db": -9.67
+  },
+  {
+    "file": "amb_sea_storm.wav",
+    "kind": "ambience",
+    "seconds": 28.0,
+    "loop": true,
+    "lufs": -23.99,
+    "peak_db": -10.42
+  },
+  {
+    "file": "amb_shop.wav",
+    "kind": "ambience",
+    "seconds": 30.0,
+    "loop": true,
+    "lufs": -24.0,
+    "peak_db": -9.29
+  },
+  {
+    "file": "bite_splash.wav",
+    "kind": "sfx",
+    "seconds": 1.014,
+    "loop": false,
+    "lufs": -20.63,
+    "peak_db": -2.2
+  },
+  {
+    "file": "boat_horn.wav",
+    "kind": "sfx",
+    "seconds": 3.325,
+    "loop": false,
+    "lufs": -18.0,
+    "peak_db": -4.74
+  },
+  {
+    "file": "bobber_plop.wav",
+    "kind": "sfx",
+    "seconds": 0.192,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -5.25
+  },
+  {
+    "file": "buoy_bell.wav",
+    "kind": "sfx",
+    "seconds": 6.85,
+    "loop": false,
+    "lufs": -18.03,
+    "peak_db": -1.6
+  },
+  {
+    "file": "cast_whoosh.wav",
+    "kind": "sfx",
+    "seconds": 1.096,
+    "loop": false,
+    "lufs": -22.0,
+    "peak_db": -6.4
+  },
+  {
+    "file": "chain_rattle.wav",
+    "kind": "sfx",
+    "seconds": 1.503,
+    "loop": false,
+    "lufs": -19.15,
+    "peak_db": -1.67
+  },
+  {
+    "file": "clay_squish_1.wav",
+    "kind": "sfx",
+    "seconds": 0.388,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -7.51
+  },
+  {
+    "file": "clay_squish_2.wav",
+    "kind": "sfx",
+    "seconds": 0.508,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -11.15
+  },
+  {
+    "file": "clay_squish_3.wav",
+    "kind": "sfx",
+    "seconds": 0.312,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -6.91
+  },
+  {
+    "file": "coin_1.wav",
+    "kind": "sfx",
+    "seconds": 0.169,
+    "loop": false,
+    "lufs": -20.04,
+    "peak_db": -1.6
+  },
+  {
+    "file": "coin_2.wav",
+    "kind": "sfx",
+    "seconds": 0.189,
+    "loop": false,
+    "lufs": -20.07,
+    "peak_db": -1.6
+  },
+  {
+    "file": "coin_3.wav",
+    "kind": "sfx",
+    "seconds": 0.333,
+    "loop": false,
+    "lufs": -20.0,
+    "peak_db": -2.85
+  },
+  {
+    "file": "crab_clatter.wav",
+    "kind": "sfx",
+    "seconds": 1.697,
+    "loop": false,
+    "lufs": -20.76,
+    "peak_db": -2.71
+  },
+  {
+    "file": "crab_click.wav",
+    "kind": "sfx",
+    "seconds": 0.1,
+    "loop": false,
+    "lufs": -25.62,
+    "peak_db": -2.65
+  },
+  {
+    "file": "dialogue_next.wav",
+    "kind": "sfx",
+    "seconds": 0.06,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -4.33
+  },
+  {
+    "file": "door_close.wav",
+    "kind": "sfx",
+    "seconds": 0.75,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -5.76
+  },
+  {
+    "file": "door_open.wav",
+    "kind": "sfx",
+    "seconds": 1.375,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -6.04
+  },
+  {
+    "file": "dredge_drop.wav",
+    "kind": "sfx",
+    "seconds": 1.884,
+    "loop": false,
+    "lufs": -19.01,
+    "peak_db": -1.6
+  },
+  {
+    "file": "dredge_up.wav",
+    "kind": "sfx",
+    "seconds": 3.1,
+    "loop": false,
+    "lufs": -19.07,
+    "peak_db": -1.6
+  },
+  {
+    "file": "engine_idle.wav",
+    "kind": "sfx",
+    "seconds": 4.0,
+    "loop": true,
+    "lufs": -22.06,
+    "peak_db": -3.0
+  },
+  {
+    "file": "engine_run.wav",
+    "kind": "sfx",
+    "seconds": 4.0,
+    "loop": true,
+    "lufs": -19.07,
+    "peak_db": -3.0
+  },
+  {
+    "file": "fish_flop_1.wav",
+    "kind": "sfx",
+    "seconds": 0.303,
+    "loop": false,
+    "lufs": -20.26,
+    "peak_db": -1.58
+  },
+  {
+    "file": "fish_flop_2.wav",
+    "kind": "sfx",
+    "seconds": 0.719,
+    "loop": false,
+    "lufs": -20.27,
+    "peak_db": -1.6
+  },
+  {
+    "file": "fish_splash.wav",
+    "kind": "sfx",
+    "seconds": 1.135,
+    "loop": false,
+    "lufs": -20.06,
+    "peak_db": -1.6
+  },
+  {
+    "file": "foghorn.wav",
+    "kind": "sfx",
+    "seconds": 7.132,
+    "loop": false,
+    "lufs": -18.0,
+    "peak_db": -5.81
+  },
+  {
+    "file": "glimmer.wav",
+    "kind": "sfx",
+    "seconds": 1.748,
+    "loop": false,
+    "lufs": -22.0,
+    "peak_db": -12.54
+  },
+  {
+    "file": "gull_1.wav",
+    "kind": "sfx",
+    "seconds": 1.09,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -16.57
+  },
+  {
+    "file": "gull_2.wav",
+    "kind": "sfx",
+    "seconds": 1.617,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -11.02
+  },
+  {
+    "file": "gull_3.wav",
+    "kind": "sfx",
+    "seconds": 2.245,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -16.24
+  },
+  {
+    "file": "hull_creak_1.wav",
+    "kind": "sfx",
+    "seconds": 1.462,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -9.03
+  },
+  {
+    "file": "hull_creak_2.wav",
+    "kind": "sfx",
+    "seconds": 1.139,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -8.72
+  },
+  {
+    "file": "hull_creak_3.wav",
+    "kind": "sfx",
+    "seconds": 1.83,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -10.82
+  },
+  {
+    "file": "ice_crack.wav",
+    "kind": "sfx",
+    "seconds": 0.736,
+    "loop": false,
+    "lufs": -19.0,
+    "peak_db": -4.22
+  },
+  {
+    "file": "ice_hammer_1.wav",
+    "kind": "sfx",
+    "seconds": 0.529,
+    "loop": false,
+    "lufs": -19.05,
+    "peak_db": -1.6
+  },
+  {
+    "file": "ice_hammer_2.wav",
+    "kind": "sfx",
+    "seconds": 0.665,
+    "loop": false,
+    "lufs": -19.0,
+    "peak_db": -2.12
+  },
+  {
+    "file": "item_get.wav",
+    "kind": "sfx",
+    "seconds": 2.49,
+    "loop": false,
+    "lufs": -20.0,
+    "peak_db": -5.9
+  },
+  {
+    "file": "nibble.wav",
+    "kind": "sfx",
+    "seconds": 0.123,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -3.28
+  },
+  {
+    "file": "page_turn.wav",
+    "kind": "sfx",
+    "seconds": 0.559,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -13.14
+  },
+  {
+    "file": "pot_drop.wav",
+    "kind": "sfx",
+    "seconds": 2.095,
+    "loop": false,
+    "lufs": -19.01,
+    "peak_db": -1.6
+  },
+  {
+    "file": "pot_surface.wav",
+    "kind": "sfx",
+    "seconds": 2.899,
+    "loop": false,
+    "lufs": -19.1,
+    "peak_db": -1.6
+  },
+  {
+    "file": "reel_loop.wav",
+    "kind": "sfx",
+    "seconds": 2.0,
+    "loop": true,
+    "lufs": -26.26,
+    "peak_db": -3.0
+  },
+  {
+    "file": "register.wav",
+    "kind": "sfx",
+    "seconds": 1.76,
+    "loop": false,
+    "lufs": -20.0,
+    "peak_db": -3.06
+  },
+  {
+    "file": "seal_bark.wav",
+    "kind": "sfx",
+    "seconds": 1.519,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -6.35
+  },
+  {
+    "file": "shop_bell.wav",
+    "kind": "sfx",
+    "seconds": 2.043,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -7.27
+  },
+  {
+    "file": "sonar_ping.wav",
+    "kind": "sfx",
+    "seconds": 3.604,
+    "loop": false,
+    "lufs": -22.0,
+    "peak_db": -12.69
+  },
+  {
+    "file": "splash_big.wav",
+    "kind": "sfx",
+    "seconds": 1.679,
+    "loop": false,
+    "lufs": -17.22,
+    "peak_db": -1.6
+  },
+  {
+    "file": "splash_small.wav",
+    "kind": "sfx",
+    "seconds": 0.748,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -5.94
+  },
+  {
+    "file": "stamp.wav",
+    "kind": "sfx",
+    "seconds": 0.148,
+    "loop": false,
+    "lufs": -20.25,
+    "peak_db": -1.6
+  },
+  {
+    "file": "step_sand_1.wav",
+    "kind": "sfx",
+    "seconds": 0.239,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -7.57
+  },
+  {
+    "file": "step_sand_2.wav",
+    "kind": "sfx",
+    "seconds": 0.259,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -8.63
+  },
+  {
+    "file": "step_sand_3.wav",
+    "kind": "sfx",
+    "seconds": 0.279,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -7.02
+  },
+  {
+    "file": "step_stone_1.wav",
+    "kind": "sfx",
+    "seconds": 0.057,
+    "loop": false,
+    "lufs": -26.23,
+    "peak_db": -1.6
+  },
+  {
+    "file": "step_stone_2.wav",
+    "kind": "sfx",
+    "seconds": 0.068,
+    "loop": false,
+    "lufs": -26.29,
+    "peak_db": -1.6
+  },
+  {
+    "file": "step_stone_3.wav",
+    "kind": "sfx",
+    "seconds": 0.073,
+    "loop": false,
+    "lufs": -26.23,
+    "peak_db": -1.6
+  },
+  {
+    "file": "step_wood_1.wav",
+    "kind": "sfx",
+    "seconds": 0.19,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -4.98
+  },
+  {
+    "file": "step_wood_2.wav",
+    "kind": "sfx",
+    "seconds": 0.2,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -5.22
+  },
+  {
+    "file": "step_wood_3.wav",
+    "kind": "sfx",
+    "seconds": 0.218,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -4.88
+  },
+  {
+    "file": "step_wood_4.wav",
+    "kind": "sfx",
+    "seconds": 0.217,
+    "loop": false,
+    "lufs": -26.0,
+    "peak_db": -5.53
+  },
+  {
+    "file": "thunder_1.wav",
+    "kind": "sfx",
+    "seconds": 7.274,
+    "loop": false,
+    "lufs": -15.08,
+    "peak_db": -1.58
+  },
+  {
+    "file": "thunder_2.wav",
+    "kind": "sfx",
+    "seconds": 6.785,
+    "loop": false,
+    "lufs": -14.39,
+    "peak_db": -1.57
+  },
+  {
+    "file": "ui_click.wav",
+    "kind": "sfx",
+    "seconds": 0.096,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -5.69
+  },
+  {
+    "file": "ui_close.wav",
+    "kind": "sfx",
+    "seconds": 0.11,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -6.76
+  },
+  {
+    "file": "ui_error.wav",
+    "kind": "sfx",
+    "seconds": 0.426,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -7.98
+  },
+  {
+    "file": "ui_hover.wav",
+    "kind": "sfx",
+    "seconds": 0.03,
+    "loop": false,
+    "lufs": -30.0,
+    "peak_db": -10.46
+  },
+  {
+    "file": "ui_open.wav",
+    "kind": "sfx",
+    "seconds": 0.11,
+    "loop": false,
+    "lufs": -24.0,
+    "peak_db": -7.62
+  },
+  {
+    "file": "wave_crash_big.wav",
+    "kind": "sfx",
+    "seconds": 4.309,
+    "loop": false,
+    "lufs": -14.26,
+    "peak_db": -1.78
+  },
+  {
+    "file": "wave_slap_1.wav",
+    "kind": "sfx",
+    "seconds": 0.849,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -1.77
+  },
+  {
+    "file": "wave_slap_2.wav",
+    "kind": "sfx",
+    "seconds": 0.722,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -1.52
+  },
+  {
+    "file": "wave_slap_3.wav",
+    "kind": "sfx",
+    "seconds": 0.93,
+    "loop": false,
+    "lufs": -21.0,
+    "peak_db": -2.87
+  },
+  {
+    "file": "winch_loop.wav",
+    "kind": "sfx",
+    "seconds": 4.0,
+    "loop": true,
+    "lufs": -19.53,
+    "peak_db": -3.0
+  },
+  {
+    "file": "winch_strain.wav",
+    "kind": "sfx",
+    "seconds": 2.207,
+    "loop": false,
+    "lufs": -19.0,
+    "peak_db": -5.68
+  }
+]

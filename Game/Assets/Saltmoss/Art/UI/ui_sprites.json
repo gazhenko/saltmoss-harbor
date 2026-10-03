@@ -1,0 +1,21 @@
+{
+ "panel_cream": 66,
+ "panel_paper": 50,
+ "panel_teal": 56,
+ "panel_navy": 56,
+ "panel_red": 56,
+ "panel_sand": 56,
+ "button": 54,
+ "button_on": 54,
+ "tag": 50,
+ "slot": 50,
+ "bar_back": 42,
+ "bar_fill": 42,
+ "keycap": 46,
+ "bubble": 70,
+ "coin": 0,
+ "clock": 0,
+ "dot": 0,
+ "stamp": 0,
+ "arrow": 0
+}
