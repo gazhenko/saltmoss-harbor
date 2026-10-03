@@ -433,11 +433,18 @@ namespace Saltmoss.EditorTools
                     tgo.transform.SetParent(name, false);
                     var tmp = tgo.AddComponent<TMPro.TextMeshPro>();
                     tmp.text = "SALLY MAE";
-                    tmp.fontSize = 3.2f;
+                    // fit between the two brass bolts on the 1.64 m board
+                    tmp.rectTransform.sizeDelta = new Vector2(1.3f, 0.26f);
+                    tmp.textWrappingMode = TMPro.TextWrappingModes.NoWrap;
+                    tmp.enableAutoSizing = true;
+                    tmp.fontSizeMin = 1f;
+                    tmp.fontSizeMax = 3.2f;
                     tmp.alignment = TMPro.TextAlignmentOptions.Center;
                     tmp.color = new Color(0.96f, 0.92f, 0.82f);
                     var ui = AssetDatabase.LoadAssetAtPath<UIBank>($"{BankBuilder.ResDir}/UIBank.asset");
                     if (ui != null && ui.display != null) tmp.font = ui.display;
+                    // stand proud of the tilted, lumpy board so its top edge doesn't swallow the letters
+                    tgo.transform.localPosition = new Vector3(0f, 0f, 0.03f);
                     tgo.transform.localRotation = Quaternion.Euler(0, 180f, 0);
                 }
             }

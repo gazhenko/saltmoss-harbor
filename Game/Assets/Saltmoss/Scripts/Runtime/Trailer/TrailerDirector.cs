@@ -145,7 +145,7 @@ namespace Saltmoss
                 nell?.GetComponentInChildren<CritterAnimator>()?.Play(Gesture.Wave, 2f);
             }, t => Dolly(A(shop, 2.5f, 1.6f, 6.5f), A(shop, 1.6f, 1.4f, 4.6f), A(shop, -0.5f, 1.2f, 0f), A(shop, -0.5f, 1.1f, 0f), t, 32f));
 
-            Add("boat_out", 6.5f, () => { Hour(11f); Clear(); BoatAt(mouth + new Vector3(4, 0, -38), 2f, 7.5f); },
+            Add("boat_out", 6.5f, () => { Hour(11f); Clear(); BoatAt(mouth + new Vector3(0, 0, 10), 2f, 7.5f); },
                 t =>
                 {
                     var b = Boat.transform;
@@ -286,7 +286,7 @@ namespace Saltmoss
             {
                 Hour(18.6f, (int)Weather.Breezy);
                 if (DayCycle.I != null) DayCycle.I.fogBoost = 1f;
-                BoatAt(mouth + new Vector3(6, 0, 30), 186f, 5f);
+                BoatAt(mouth + new Vector3(6, 0, 50), 186f, 5f);
             }, t =>
             {
                 var b = Boat.transform;

@@ -111,7 +111,7 @@ Download each file from https://github.com/gazhenko/saltmoss-harbor/releases/dow
   Checksums                      SHA256SUMS.txt
 
 1. Detect the OS and CPU. If this computer is not one of the three platforms above (for example Windows or Linux on ARM), stop and tell me.
-2. Check there is at least 1 GB free. Download the matching archive (about SIZE_MB MB) and SHA256SUMS.txt into a temporary folder with curl -L (curl.exe on Windows).
+2. Check there is at least 1 GB free. Download the matching archive (about 180 MB) and SHA256SUMS.txt into a temporary folder with curl -L (curl.exe on Windows).
 3. Compute the archive's SHA-256 and compare it with its line in SHA256SUMS.txt. If it does not match, delete the download and stop.
 4. Install it, replacing any earlier Saltmoss Harbor install at the same location:
    - macOS: run ditto -x -k <archive> ~/Applications so the app ends up at "~/Applications/Saltmoss Harbor.app". The build is ad-hoc signed and not notarized; if the app carries a com.apple.quarantine attribute, remove it with xattr -dr com.apple.quarantine on the app.
@@ -130,7 +130,8 @@ Download the archive for your computer from the [latest release](../../releases/
   notarized). If macOS says it is damaged: `xattr -dr com.apple.quarantine "Saltmoss Harbor.app"`.
 - **Windows** (x64): extract the zip into a new folder and run `SaltmossHarbor.exe`. The Windows player is built from the same source as the others but hasn't been run on Windows yet; please report problems in an issue.
 - **Linux** (x64): extract into a new folder with `tar -xzf SaltmossHarbor-v1.0.0-Linux-x64.tar.gz`, then
-  `chmod +x SaltmossHarbor.x86_64 && ./SaltmossHarbor.x86_64` (Vulkan or OpenGL 4.5).
+  `chmod +x SaltmossHarbor.x86_64 && ./SaltmossHarbor.x86_64` (Vulkan or OpenGL 4.5). The Linux player has been
+  started and rendered under software OpenGL but not yet played on real Linux hardware.
 
 The Windows and Linux archives have no top-level folder, so extract them into an empty folder of their own.
 

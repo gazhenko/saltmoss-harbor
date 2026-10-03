@@ -15,7 +15,7 @@
     {"type": "clip", "src": "cast_catch", "in": 1.6, "dur": 3.125, "game_audio": 0.7},
     {"type": "clip", "src": "treasure", "in": 1.2, "dur": 3.125, "game_audio": 0.7},
     {"type": "clip", "src": "shop_rush", "in": 2.4, "dur": 3.125, "game_audio": 0.7},
-    {"type": "clip", "src": "museum", "in": 0.8, "dur": 3.125, "game_audio": 0.6},
+    {"type": "clip", "src": "village_hill", "in": 0.3, "dur": 3.125, "game_audio": 0.0},
     {"type": "clip", "src": "shelby", "in": 0.2, "dur": 3.125, "game_audio": 0.9},
     {"type": "clip", "src": "deep_sail", "in": 0.2, "dur": 3.125, "game_audio": 0.7},
     {"type": "card", "png": "c_home", "dur": 3.125, "zoom": 0.04, "over": "lanterns_night", "over_in": 0.0},

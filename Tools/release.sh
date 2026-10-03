@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Package Builds/{mac,win,linux} + the trailer and publish a GitHub release.
-#   Tools/release.sh v1.0.0 [--draft]
+#   Tools/release.sh v1.0.0 [--draft]      (SM_NO_PUBLISH=1 packages without creating the release)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TAG=${1:?tag like v1.0.0}; shift || true
@@ -13,4 +13,5 @@ cd "$ROOT/Builds"
 [ -f "$ROOT/Trailer/saltmoss_harbor_trailer.mp4" ] && cp "$ROOT/Trailer/saltmoss_harbor_trailer.mp4" "$OUT/Saltmoss-Harbor-trailer.mp4"
 (cd "$OUT" && shasum -a 256 * > SHA256SUMS.txt)
 ls -lh "$OUT"
+[[ "${SM_NO_PUBLISH:-}" == 1 ]] && exit 0
 gh release create "$TAG" $DRAFT --title "Saltmoss Harbor $TAG" --notes-file "$ROOT/Docs/RELEASE_NOTES.md" "$OUT"/*
