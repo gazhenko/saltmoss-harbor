@@ -131,7 +131,7 @@ Download each file from https://github.com/gazhenko/saltmoss-harbor/releases/dow
   Checksums                      SHA256SUMS.txt
 
 1. Detect the OS and CPU. If this computer is not one of the three platforms above (for example Windows or Linux on ARM), stop and tell me.
-2. Check there is at least 1 GB free. Download the matching archive (about 175 MB) and SHA256SUMS.txt into a temporary folder with curl -L (curl.exe on Windows).
+2. Check there is at least 1 GB free. Download the matching archive (about 190 MB) and SHA256SUMS.txt into a temporary folder with curl -L (curl.exe on Windows).
 3. Compute the archive's SHA-256 and compare it with its line in SHA256SUMS.txt. If it does not match, delete the download and stop.
 4. Install it, replacing any earlier Saltmoss Harbor install at the same location:
    - macOS: run ditto -x -k <archive> ~/Applications so the app ends up at "~/Applications/Saltmoss Harbor.app". The build is ad-hoc signed and not notarized; if the app carries a com.apple.quarantine attribute, remove it with xattr -dr com.apple.quarantine on the app.
