@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Scenario screenshots from the macOS build (Builds/shots/verify/<name>/*.png) for reviewing a build at a glance.
 #   Tools/verify.sh [names…]     names: title town dialogue sea pots catch shop journal night storm board tieup
+#                                       prompt promptpad map seamap minimap forecast
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 APP="$ROOT/Builds/mac/Saltmoss Harbor.app/Contents/MacOS"
@@ -27,6 +28,12 @@ for n in $want; do
     seaplay)  run seaplay 3,6,9,16,33,40,47 -play -hour 10 -flags met_walter,met_nell -boatAt 10,135,0 -keys "2:e:tap,5:space:tap,14:space:tap,30:e:tap,30.4:space:down,31.1:space:up,31.30:space:down,31.56:space:up,31.76:space:down,32.02:space:up,32.22:space:down,32.48:space:up,32.68:space:down,32.94:space:up,33.14:space:down,33.40:space:up,33.60:space:down,33.86:space:up,34.06:space:down,34.32:space:up,34.52:space:down,34.78:space:up,34.98:space:down,35.24:space:up,35.44:space:down,35.70:space:up,35.90:space:down,36.16:space:up,36.36:space:down,36.62:space:up,36.82:space:down,37.08:space:up,37.28:space:down,37.54:space:up,37.74:space:down,38.00:space:up,38.20:space:down,38.46:space:up,38.66:space:down,38.92:space:up,39.12:space:down,39.38:space:up,39.58:space:down,39.84:space:up,40.04:space:down,40.30:space:up,40.50:space:down,40.76:space:up,40.96:space:down,41.22:space:up,41.42:space:down,41.68:space:up,41.88:space:down,42.14:space:up,42.34:space:down,42.60:space:up,42.80:space:down,43.06:space:up,43.26:space:down,43.52:space:up,43.72:space:down,43.98:space:up" ;;
     board)    run board 1,5,10 -play -hour 10 -freezeClock -flags met_walter,met_nell -atBoard -keys "3:e:tap" ;;
     tieup)    run tieup 11,17.5,23 -play -hour 10 -freezeClock -flags met_walter,met_nell -atBoard -keys "3:e:tap,4:w:down,8:w:up,12:s:down,17:s:up,18:e:tap" ;;
+    prompt)   run prompt 4 -play -hour 10 -freezeClock -flags met_walter -atBoard ;;
+    promptpad) run promptpad 4 -play -hour 10 -freezeClock -flags met_walter -atBoard -padGlyphs ps ;;
+    map)      run map 4 -play -hour 10 -freezeClock -map town ;;
+    seamap)   run seamap 5 -play -hour 11 -freezeClock -flags met_walter,met_nell -boatAt 60,300,30 -pots 3 -map sea ;;
+    minimap)  run minimap 5 -play -hour 11 -freezeClock -flags met_walter,met_nell,map_tip -boatAt 60,300,30 -pots 3 ;;
+    forecast) run forecast 5 -play -hour 10 -freezeClock -noHud -cam 10.35,3.25,-11.2,10.35,3.1,-8.45,40 ;;
     storm)    run storm 7 -play -hour 15 -freezeClock -weather 5 -flags met_walter -boatAt -60,560,30,4 ;;
   esac
 done

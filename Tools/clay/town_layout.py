@@ -21,6 +21,8 @@ ROOT = os.path.abspath(os.path.join(HERE, "../.."))
 sys.path[:0] = [HERE, os.path.join(HERE, "models")]
 from clay import read_claymesh, euler  # noqa: E402
 import town_terrain as TT  # noqa: E402
+import bunting_lines as BL  # noqa: E402
+import far_land as FL  # noqa: E402
 
 MODELS = os.path.join(ROOT, "Game/Assets/Saltmoss/Models")
 OUT = os.path.join(ROOT, "Game/Assets/Saltmoss/Data/town_layout.json")
@@ -253,10 +255,6 @@ for (x, z, mdl, yaw) in ((2.2, -10.4, "town/barrel", 0), (2.8, -10.0, "town/barr
                          (0.4, -15.8, "town/flower_pot", 0), (6.9, -10.2, "town/mailbox", 180)):
     add(mdl, (x, TT.STREET_Y, z), yaw, "box", "prop")
 add("town/sign_post", (3.2, TT.STREET_Y, -11.2), 0, "box", "sign")
-# bunting strung across the street between lantern posts (shows once the harbour is restored)
-for x in (-7.75, 0.75, 9.5):
-    inst.append(dict(model="town/bunting", pos=[x, TT.STREET_Y + 2.35, -15.5], yaw=0.0, scale=1.0, collide="none", tag="bunting tier2", tier=2))
-inst.append(dict(model="town/bunting", pos=[0.0, DECK + 2.3, -1.0], yaw=90.0, scale=1.0, collide="none", tag="bunting tier2", tier=2))
 
 # -- beach & museum surroundings
 for (x, z, mdl) in ((-27.0, 9.5, "town/driftwood"), (-38.5, 14.0, "town/driftwood"), (-44.0, 17.5, "town/seaweed_pile"), (-34.5, 13.6, "town/seaweed_pile"),
@@ -435,10 +433,22 @@ for (x, z, yaw, mdl) in ((-14.4, 0.7, 10, "town/barrel_lo"), (-14.45, 8.4, 0, "t
     deck_prop(mdl, x, z, yaw)
 for (x, z, yaw) in ((-14.0, 3.3, 90), (22.4, 2.18, 0)):     # flower boxes hung on the walk rails (tier2)
     deck_prop("town/flower_box", x, z, yaw, y=DECK + 0.6, tag="prop tier2", collide="none")
-# bunting strung over the new walks and between hillside houses once the lanterns are relit
-for (x, y, z, yaw) in ((-15.2, DECK + 2.3, 2.0, 90), (20.4, DECK + 2.3, 1.0, 0), (0.0, 0.0, -29.7, 0), (-11.5, 0.0, -38.8, 5)):
-    yy = y if y else gy(x, z) + 2.6
-    inst.append(dict(model="town/bunting", pos=[x, round(yy, 3), z], yaw=float(yaw), scale=1.0, collide="none", tag="bunting tier1"))
+# bunting: every string runs between two real supports (lantern posts, or poles added here) and is built at
+# exactly that length (Tools/clay/bunting_lines.py). Tier 2 strings show once the harbour is restored, tier 1 once
+# the lanterns are relit.
+for a, b, tier in BL.LINES:
+    ends = []
+    for (x, fy, z, kind) in (a, b):
+        foot = gy(x, z) if fy is None else fy
+        ends.append((x, foot, z))
+        if kind == "pole":
+            inst.append(dict(model="town/bunting_pole", pos=[x, round(foot, 3), z], yaw=0.0, scale=1.0, collide="box",
+                             tag=f"prop tier{tier}"))
+    (ax, ay, az), (bx, by, bz) = ends
+    yaw = math.degrees(math.atan2(-(bz - az), bx - ax))   # the string runs along the model's local +X
+    tie = max(ay, by) + BL.TIE
+    inst.append(dict(model=BL.span_id(BL.span(a, b)), pos=[round((ax + bx) / 2, 3), round(tie, 3), round((az + bz) / 2, 3)],
+                     yaw=round(yaw, 2), scale=1.0, collide="none", tag=f"bunting tier{tier}"))
 
 
 # -- procedural scatter: grass tufts, shore rocks, spruces
@@ -581,7 +591,7 @@ def finish():
     # restoration: instances with "tier" appear from that harbour tier on; swaps replace a tagged model at a tier
     swaps = [dict(tag="shop", model="town/fish_shop_restored", tier=2)]
     out = dict(version=1, sea_level=0.0, instances=inst, anchors=anchors, swaps=swaps,
-               terrain=dict(tiles=sorted(k.split("/")[1] for k in TT.MODELS), tile_size=TT.TILE, origin=[TT.TX0, TT.TZ0]))
+               terrain=dict(tiles=sorted(k.split("/")[1] for k in list(TT.MODELS) + list(FL.MODELS)), tile_size=TT.TILE, origin=[TT.TX0, TT.TZ0]))
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w") as f:
         json.dump(out, f, indent=1)

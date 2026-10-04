@@ -18,7 +18,7 @@ namespace Saltmoss
     public enum PadStyle { Xbox, PlayStation, Nintendo }
 
     /// <summary>The rebindable controls, in the order the Controls screen lists them.</summary>
-    public enum Bind { Forward, Back, Left, Right, Interact, UseTool, Run, Journal, Recenter, Horn, Pause }
+    public enum Bind { Forward, Back, Left, Right, Interact, UseTool, Run, Journal, Recenter, Horn, Pause, Map }
 
     /// <summary>Binding columns: two keyboard keys and one controller input per control.</summary>
     public enum Slot { Key1, Key2, Pad }
@@ -36,7 +36,7 @@ namespace Saltmoss
         const string PrefsKey = "saltmoss_bindings_v1";
 
         public static InputActionAsset Asset { get; private set; }
-        public static InputAction Move, Look, Zoom, Interact, UseTool, Run, Journal, Recenter, Horn, Pause, OrbitHold;
+        public static InputAction Move, Look, Zoom, Interact, UseTool, Run, Journal, Recenter, Horn, Pause, Map, OrbitHold;
         public static InputAction NavLeft, NavRight, NavUp, NavDown, Back, Confirm, Any, Clear, Default;
         static InputActionMap driveMap, menuMap, uiMap;
 
@@ -57,9 +57,9 @@ namespace Saltmoss
         public static bool Capturing => captureDepth > 0;
 
         struct Row { public InputAction action; public int key1, key2, pad; }
-        static readonly Row[] rows = new Row[11];
+        static readonly Row[] rows = new Row[12];
 
-        public static readonly string[] BindNames = { "Walk / sail forward", "Walk / sail back", "Left", "Right", "Talk / interact", "Use tool (cast, haul, drop pot)", "Run / full throttle", "Journal", "Recenter camera", "Horn", "Pause" };
+        public static readonly string[] BindNames = { "Walk / sail forward", "Walk / sail back", "Left", "Right", "Talk / interact", "Use tool (cast, haul, drop pot)", "Run / full throttle", "Journal", "Recenter camera", "Horn", "Pause", "Map" };
 
         static bool inited;
 
@@ -119,6 +119,7 @@ namespace Saltmoss
             Recenter = Simple(Bind.Recenter, "Recenter", InputActionType.Button, "<Keyboard>/r", "", "<Gamepad>/rightStickPress");
             Horn = Simple(Bind.Horn, "Horn", InputActionType.Button, "<Keyboard>/h", "", "<Gamepad>/leftStickPress");
             Pause = Simple(Bind.Pause, "Pause", InputActionType.Button, "<Keyboard>/escape", "<Keyboard>/p", "<Gamepad>/start");
+            Map = Simple(Bind.Map, "Map", InputActionType.Button, "<Keyboard>/m", "", "<Gamepad>/select");
 
             // Fixed menu controls (not rebindable, so menus always work even with a broken custom layout).
             menuMap = Asset.AddActionMap("Menu");
@@ -451,8 +452,18 @@ namespace Saltmoss
 
         // ------------------------------------------------------------------ labels
 
+        static int pinnedStyle = -1;
+
+        /// <summary>Verification captures (-padGlyphs): label everything as if a controller of this style were in use.</summary>
+        public static void PinPadGlyphs(PadStyle st)
+        {
+            pinnedStyle = (int)st;
+            SetActive(InputSystem.AddDevice<Gamepad>("CapturePad"), true);
+        }
+
         public static PadStyle StyleOf(InputDevice d)
         {
+            if (pinnedStyle >= 0) return (PadStyle)pinnedStyle;
             int forced = Settings.PadLabels;
             if (forced > 0 && forced <= 3) return (PadStyle)(forced - 1);
             if (d == null) return PadStyle.Xbox;

@@ -52,6 +52,22 @@ namespace Saltmoss.EditorTools
                     Static(go);
                 }
 
+            // the town's walkable patch ends where the mainland scenery begins (Tools/clay/models/far_land.py): invisible
+            // walls along its landward edges. Default layer, so they stop Pip but not the camera or the boat (World only).
+            var bounds = new GameObject("Bounds").transform;
+            bounds.SetParent(world);
+            foreach (var (c, size) in new[] {
+                (new Vector3(-99.5f, 40f, -34f), new Vector3(1f, 140f, 134f)),     // west, from the back edge to the coast
+                (new Vector3(99.5f, 40f, -35f), new Vector3(1f, 140f, 132f)),      // east
+                (new Vector3(0f, 40f, -99.5f), new Vector3(200f, 140f, 1f)) })    // south
+            {
+                var w = new GameObject("Wall");
+                w.transform.SetParent(bounds);
+                w.transform.position = c;
+                w.AddComponent<BoxCollider>().size = size;
+                Static(w);
+            }
+
             // ---------------------------------------------------------------- town
             var town = new GameObject("Town").transform;
             town.SetParent(world);
@@ -86,8 +102,9 @@ namespace Saltmoss.EditorTools
                 if (board != null)
                 {
                     var t = Sign(board, "FORECAST", ui != null ? ui.body : null, new Color(0.93f, 0.93f, 0.9f), 0.9f);
-                    t.alignment = TMPro.TextAlignmentOptions.Top;
-                    t.rectTransform.sizeDelta = new Vector2(1.6f, 1.2f);
+                    // inside the chalk slate (1.14 x 0.84 m between the frame boards), with a little margin
+                    t.alignment = TMPro.TextAlignmentOptions.Center;
+                    t.rectTransform.sizeDelta = new Vector2(0.98f, 0.66f);
                     board.gameObject.AddComponent<ForecastBoard>().text = t;
                 }
             }
@@ -134,6 +151,8 @@ namespace Saltmoss.EditorTools
             refs.shopStand = Anchor("shop_counter", world);
             refs.museumDoor = Anchor("museum_door", world);
             refs.board = Anchor("board", world);
+            refs.postOffice = Anchor("marge_post", world);
+            refs.lighthouse = Anchor("lighthouse_lamp", world);
 
             // ---------------------------------------------------------------- shop
             var counter = new GameObject("ShopCounter");
@@ -212,6 +231,7 @@ namespace Saltmoss.EditorTools
             // ---------------------------------------------------------------- shore foam
             Physics.SyncTransforms();
             BakeShoreFoam(sea);
+            BakeCoastFoam(sea);
 
             SceneKit.Save(scene);
         }
@@ -518,6 +538,85 @@ namespace Saltmoss.EditorTools
         }
 
         /// <summary>Probe the waterline on a grid: wherever something stands in the water, ring it with foam.</summary>
+        /// <summary>The same white rim along the mainland coast, coarser (about a metre a texel) over the whole shoreline.</summary>
+        static void BakeCoastFoam(SeaState sea)
+        {
+            const int NX = 2048, NZ = 416;
+            var origin = new Vector2(-1200f, -120f);
+            var size = new Vector2(2400f, 487.5f);
+            float cell = size.x / NX;
+            int mask = 1 << ProjectSetup.LayerWorld;
+            var solid = new bool[NX, NZ];
+            for (int j = 0; j < NZ; j++)
+                for (int i = 0; i < NX; i++)
+                    solid[i, j] = Physics.CheckSphere(new Vector3(origin.x + (i + 0.5f) * cell, 0.05f, origin.y + (j + 0.5f) * cell), cell * 0.55f, mask, QueryTriggerInteraction.Ignore);
+            var d = Chamfer(solid, NX, NZ, cell);
+            var tex = new Texture2D(NX, NZ, TextureFormat.R8, false, true);
+            var px = new Color32[NX * NZ];
+            for (int j = 0; j < NZ; j++)
+                for (int i = 0; i < NX; i++)
+                {
+                    float f = solid[i, j] ? 1f : Mathf.Clamp01(1f - d[i, j] / 2.6f);
+                    byte v = (byte)(Mathf.SmoothStep(0f, 1f, f) * 255);
+                    px[j * NX + i] = new Color32(v, v, v, 255);
+                }
+            tex.SetPixels32(px);
+            tex.Apply();
+            string path = "Assets/Saltmoss/Generated/coast_foam.png";
+            File.WriteAllBytes(path, tex.EncodeToPNG());
+            AssetDatabase.ImportAsset(path);
+            if (AssetImporter.GetAtPath(path) is TextureImporter ti)
+            {
+                ti.sRGBTexture = false;
+                ti.wrapMode = TextureWrapMode.Clamp;
+                ti.textureCompression = TextureImporterCompression.Uncompressed;
+                ti.mipmapEnabled = true;
+                SingleChannel(ti);
+                ti.SaveAndReimport();
+            }
+            var mat = sea.seaMaterial;
+            mat.SetTexture("_ShoreFoamFar", AssetDatabase.LoadAssetAtPath<Texture2D>(path));
+            mat.SetVector("_ShoreRectFar", new Vector4(origin.x, origin.y, size.x, size.y));
+            EditorUtility.SetDirty(mat);
+            Debug.Log("[World] coast foam baked");
+        }
+
+        /// <summary>Foam maps only use red: keep them one byte a texel instead of four.</summary>
+        static void SingleChannel(TextureImporter ti)
+        {
+            ti.SetPlatformTextureSettings(new TextureImporterPlatformSettings { name = "Standalone", overridden = true, format = TextureImporterFormat.R8, maxTextureSize = 2048 });
+        }
+
+        /// <summary>Distance (m) from each cell to the nearest solid one: a two-pass chamfer.</summary>
+        static float[,] Chamfer(bool[,] solid, int nx, int nz, float cell)
+        {
+            var d = new float[nx, nz];
+            const float INF = 1e6f;
+            float a = cell, b = cell * 1.41421356f;
+            for (int j = 0; j < nz; j++) for (int i = 0; i < nx; i++) d[i, j] = solid[i, j] ? 0f : INF;
+            for (int j = 0; j < nz; j++)
+                for (int i = 0; i < nx; i++)
+                {
+                    float v = d[i, j];
+                    if (i > 0) v = Mathf.Min(v, d[i - 1, j] + a);
+                    if (j > 0) v = Mathf.Min(v, d[i, j - 1] + a);
+                    if (i > 0 && j > 0) v = Mathf.Min(v, d[i - 1, j - 1] + b);
+                    if (i < nx - 1 && j > 0) v = Mathf.Min(v, d[i + 1, j - 1] + b);
+                    d[i, j] = v;
+                }
+            for (int j = nz - 1; j >= 0; j--)
+                for (int i = nx - 1; i >= 0; i--)
+                {
+                    float v = d[i, j];
+                    if (i < nx - 1) v = Mathf.Min(v, d[i + 1, j] + a);
+                    if (j < nz - 1) v = Mathf.Min(v, d[i, j + 1] + a);
+                    if (i < nx - 1 && j < nz - 1) v = Mathf.Min(v, d[i + 1, j + 1] + b);
+                    if (i > 0 && j < nz - 1) v = Mathf.Min(v, d[i - 1, j + 1] + b);
+                    d[i, j] = v;
+                }
+            return d;
+        }
+
         static void BakeShoreFoam(SeaState sea)
         {
             const int N = 1024;
@@ -578,6 +677,7 @@ namespace Saltmoss.EditorTools
                 ti.wrapMode = TextureWrapMode.Clamp;
                 ti.textureCompression = TextureImporterCompression.Uncompressed;
                 ti.mipmapEnabled = true;
+                SingleChannel(ti);
                 ti.SaveAndReimport();
             }
             var mat = sea.seaMaterial;

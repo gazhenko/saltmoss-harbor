@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,7 @@ namespace Saltmoss
         public static string Task = "";
         /// <summary>Clean frames for screenshots and the trailer (-noHud).</summary>
         public static bool ForceHidden = CommandLine.Has("-noHud");
+        const float PromptH = 70f, CapH = 50f, PromptPad = 18f;
         public static string ActionPrompt;        // set every frame by sea systems (e.g. "Cast line")
         public static string ActionKey;           // "UseTool" or "Interact"
 
@@ -67,11 +69,14 @@ namespace Saltmoss
             holdText.margin = new Vector4(16, 10, 16, 16);
             holdText.lineSpacing = -10f;
 
-            var prompt = ClayUI.Panel("Prompt", root, "panel_cream", new Vector2(0.5f, 0f), new Vector2(0f, 360f), new Vector2(420f, 92f), null, new Vector2(0.5f, 0f));
+            var prompt = ClayUI.Panel("Prompt", root, "panel_cream", new Vector2(0.5f, 0f), new Vector2(0f, 360f), new Vector2(300f, PromptH), null, new Vector2(0.5f, 0f));
             promptRt = prompt.rectTransform;
-            promptKey = ClayUI.Prompt(prompt.transform, new Vector2(0f, 0.5f), new Vector2(56f, 3f), out promptCap);
-            promptText = ClayUI.Text("Text", prompt.transform, "", 32f, ClayUI.Ink, TextAlignmentOptions.Left, true);
-            promptText.margin = new Vector4(104, 12, 24, 18);
+            promptKey = ClayUI.Prompt(prompt.transform, new Vector2(0f, 0.5f), new Vector2(PromptPad + CapH * 0.5f, 2f), out promptCap);
+            promptCap.rectTransform.sizeDelta = new Vector2(CapH, CapH);
+            promptKey.fontSizeMax = 25;
+            promptText = ClayUI.Text("Text", prompt.transform, "", 27f, ClayUI.Ink, TextAlignmentOptions.Left, true);
+            promptText.textWrappingMode = TextWrappingModes.NoWrap;
+            promptText.margin = Vector4.zero;
 
             bannerRt = ClayUI.Rect("Banner", root, new Vector2(0.5f, 0.72f), new Vector2(0.5f, 0.72f), Vector2.zero, new Vector2(1400f, 220f));
             banner = ClayUI.Text("Title", bannerRt, "", 110f, ClayUI.Cream, TextAlignmentOptions.Center, true);
@@ -150,12 +155,16 @@ namespace Saltmoss
                 var bind = keyName == "UseTool" ? Bind.UseTool : keyName == "Run" ? Bind.Run : Bind.Interact;
                 string key = GameInput.Label(bind);
                 promptKey.text = key;
-                float capW = key.Length > 2 ? 40f + key.Length * 18f : 64f;
-                promptCap.rectTransform.sizeDelta = new Vector2(capW, 64f);
-                promptCap.rectTransform.anchoredPosition = new Vector2(24f + capW * 0.5f, 3f);
-                promptText.margin = new Vector4(capW + 40f, 12, 24, 18);
-                float w = Mathf.Clamp(promptText.preferredWidth + capW + 76f, 300f, 980f);
-                promptRt.sizeDelta = new Vector2(w, 92f);
+                // size the cap to what it shows: controller glyphs carry colour/size tags, so count visible characters
+                int shown = Regex.Replace(key, "<[^>]*>", "").Length;
+                float capW = shown <= 2 ? CapH : 22f + shown * 15f;
+                promptCap.rectTransform.sizeDelta = new Vector2(capW, CapH);
+                promptCap.rectTransform.anchoredPosition = new Vector2(PromptPad + capW * 0.5f, 2f);
+                var trt = promptText.rectTransform;
+                trt.offsetMin = new Vector2(PromptPad + capW + 14f, 6f);
+                trt.offsetMax = new Vector2(-PromptPad, -6f);
+                float tw = promptText.GetPreferredValues(text, 2000f, PromptH).x;
+                promptRt.sizeDelta = new Vector2(Mathf.Clamp(tw + capW + 14f + PromptPad * 2f + 12f, 180f, 900f), PromptH);
             }
 
             // banner: pop in, hold, fade

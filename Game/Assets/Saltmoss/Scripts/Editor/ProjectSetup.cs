@@ -15,7 +15,7 @@ namespace Saltmoss.EditorTools
         public const string SettingsDir = "Assets/Saltmoss/Settings";
         public const string MaterialsDir = "Assets/Saltmoss/Materials";
         public const string TexDir = "Assets/Saltmoss/Art/Textures";
-        public const string Version = "1.0.1";
+        public const string Version = "1.1.0";
 
         // layers
         public const int LayerPlayer = 8, LayerBoat = 9, LayerWorld = 10, LayerWater = 11, LayerInteract = 12, LayerPortrait = 13, LayerIcon = 14, LayerNPC = 15;
@@ -397,6 +397,13 @@ namespace Saltmoss.EditorTools
                 ti.textureType = TextureImporterType.Default;
                 ti.sRGBTexture = false;
                 ti.wrapMode = TextureWrapMode.Repeat;
+            }
+            else if (path.Contains("/UI/map_"))
+            {
+                // the paper charts are big: compressed, with mips so they stay smooth shrunk into the minimap
+                ti.textureType = TextureImporterType.Sprite;
+                ti.spriteImportMode = SpriteImportMode.Single;
+                ti.alphaIsTransparency = false;
             }
             else if (path.Contains("/UI/"))
             {

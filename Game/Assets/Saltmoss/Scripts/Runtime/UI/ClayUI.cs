@@ -26,7 +26,8 @@ namespace Saltmoss
             var s = go.AddComponent<CanvasScaler>();
             s.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             s.referenceResolution = new Vector2(1920, 1080);
-            s.matchWidthOrHeight = 0.5f;
+            // never smaller than 1920x1080 in either direction: ultrawide and 16:10 screens get room, not a squeeze
+            s.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             go.AddComponent<GraphicRaycaster>();
             GameInput.EnsureEventSystem();
             return c;

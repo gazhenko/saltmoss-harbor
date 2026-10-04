@@ -6,7 +6,7 @@ namespace Saltmoss
     public class WorldRefs : MonoBehaviour
     {
         public static WorldRefs I { get; private set; }
-        public Transform playerSpawn, pipDoor, board, shopStand, museumDoor, titleCam, titleLook;
+        public Transform playerSpawn, pipDoor, board, shopStand, museumDoor, postOffice, lighthouse, titleCam, titleLook;
         public Transform[] titleShots = new Transform[0];
         void Awake() { I = this; }
     }

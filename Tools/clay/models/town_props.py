@@ -2,6 +2,7 @@
 import numpy as np
 from kit_town import TownModel, T, TP
 import kit_props as K
+import bunting_lines as BL
 
 MODELS = {}
 
@@ -104,9 +105,20 @@ def _flower_box(m):
     K.flower_box(m, T(), "box")
 
 
-@reg("bunting", budget=2500)
-def _bunting(m):
-    K.bunting(m, T(), "bunting")
+def _reg_bunting(s):
+    # one string per span in bunting_lines.py, sagging a little more the longer it is
+    @reg(BL.span_id(s)[len("town/"):], budget=int(1800 + 160 * s))
+    def _bunting(m):
+        K.bunting(m, T(), "bunting", span=s, sag=0.065 * s)
+
+
+for _s in BL.spans():
+    _reg_bunting(_s)
+
+
+@reg("bunting_pole", budget=2600)
+def _bunting_pole(m):
+    K.bunting_pole(m, T(), "wood", "metal", h=BL.TIE + 0.2, tie=BL.TIE)
 
 
 @reg("sign_post")

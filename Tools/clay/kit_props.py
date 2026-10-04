@@ -1068,6 +1068,30 @@ class Pennant(Prim):
         return W.min(0), W.max(0)
 
 
+def bunting_pole(m, t, merge="props", metal="metal", h=2.55, tie=2.35, detail=1.0):
+    """A weathered pole planted to carry a string of bunting: round timber, tin cap, an iron eye at `tie` for the
+    string, a lashing of rope just below, and the same braced foot as the lantern posts."""
+    rng = m.rng
+    col = pick(rng, [TP["wood"], TP["wood_dk"], TP["wood_br"]])
+    post(m, merge, t.p(0, 0.0, 0), t.p(0.012, h, -0.006), 0.05, col, square=False, detail=detail)
+    cp = m.piece(color=TP["tin_dk"], gloss=50, merge=merge, res=0.006, lumps=0.001, detail=0.4 * detail)
+    cp.add(Sphere(t.p(0.012, h + 0.01, -0.006), 0.062), k=0.0)
+    cp.sub(Box(t.p(0.012, h - 0.05, -0.006), (0.08, 0.05, 0.08)))
+    cp.paint(patches(8, 0.1, 6), TP["rust"], feather=0.008)
+    ey = m.piece(color=TP["iron"], gloss=60, merge=metal, res=0.004, lumps=0.0006, detail=0.4)
+    ey.add(Torus(t.p(0.011, tie, -0.006), 0.062, 0.008, t.r((90, 0, 0))))
+    rp = m.piece(color=TP["rope"], gloss=20, merge=merge, res=0.004, lumps=0.0008, detail=0.4 * detail)
+    for k in range(3):
+        rp.add(Torus(t.p(0.011, tie - 0.12 - k * 0.022, -0.006), 0.056, 0.009, t.r((rng.normal() * 4, 0, rng.normal() * 4))), k=0.004)
+    for yaw in (0, 90):
+        tt = t.sub((0, 0, 0), yaw)
+        board(m, merge, tt.p(-0.3, 0.03, 0), tt.p(0.3, 0.03, 0), 0.09, 0.055, tt.v((0, 1, 0)), shade(col, 0.9), nails=1, detail=0.6 * detail)
+    for k in range(4):
+        a = np.pi / 2 * k
+        d = np.array([math.cos(a), 0, math.sin(a)])
+        post(m, merge, t.p(d * 0.25 + [0, 0.06, 0]), t.p(d * 0.045 + [0, 0.4, 0]), 0.018, shade(col, 0.95), detail=0.4 * detail)
+
+
 def bunting(m, t, merge="props", span=6.0, sag=0.4, spacing=0.3, flag_w=0.19, flag_l=0.25, colors=None, detail=1.0):
     """A string of faded cloth pennants from x=-span/2 to +span/2 at y=0 sagging `sag` in the middle (origin at
     the chord midpoint)."""

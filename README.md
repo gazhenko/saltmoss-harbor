@@ -5,11 +5,12 @@ Haul crab pots through the swell, cast for fish shadows, dredge the deep for tre
 
 <p align="center">
 <a href="../../releases/latest"><b>⬇ Download for macOS · Windows · Linux</b></a> ·
+<a href="#easy-installers"><b>Easy installers</b></a> ·
 <a href="#give-this-to-your-agent"><b>Install with your agent</b></a> ·
-<a href="https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.0.0/Saltmoss-Harbor-trailer.mp4"><b>▶ Watch the trailer</b></a>
+<a href="https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.1.0/Saltmoss-Harbor-trailer.mp4"><b>▶ Watch the trailer</b></a>
 </p>
 
-<p align="center"><a href="https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.0.0/Saltmoss-Harbor-trailer.mp4"><img src="Docs/media/teaser.gif" alt="gameplay teaser — click for the full trailer" width="900"></a></p>
+<p align="center"><a href="https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.1.0/Saltmoss-Harbor-trailer.mp4"><img src="Docs/media/teaser.gif" alt="gameplay teaser — click for the full trailer" width="900"></a></p>
 
 | THE HARBOUR | THE GREY DEEP | THE SALTY PUFFIN |
 |---|---|---|
@@ -58,6 +59,9 @@ each exposure the clay "boils" a little as if re-handled, while your camera and 
   talk (replacement mouths, eyelids and brows, just like real stop-motion), a typewriter text crawl with wavy and shaky
   words, and **Animalese-style voice blips** — every character's voice is synthesized letter by letter at their own pitch
   and timbre, with mumbled greetings.
+- **Charts of the coast** — press **M** (View / Create on a controller) for a paper map of the town with every
+  building and boardwalk, or the sea chart of the fishing grounds with your crab pots, the Sally Mae and the old wreck.
+  While you sail, a little chart in the corner keeps track of where you are.
 - **A day in twelve minutes** — dawn to midnight lighting cues, lit windows and lanterns at night, a painted sky with
   cotton-wool clouds and glitter-bead stars. Sleep to save and start a new day.
 - **An original soundtrack** — sea shanties, waltzes and lullabies for accordion, ukulele, whistle, fiddle and glockenspiel,
@@ -77,6 +81,7 @@ Every control can be remapped in **Pause ▸ Controls**.
 | Talk · interact · haul · drop pot · dredge · tie up | E | A | × |
 | Use tool (cast a line, reel, hook) | Space | X | □ |
 | Journal (collection, hold, letters) | Tab | Y | △ |
+| Map (town / sea chart) | M | View | Create |
 | Look around | Hold right mouse button | Right stick | Right stick |
 | Zoom | Mouse wheel | — | — |
 | Recenter camera | R | R3 | R3 |
@@ -96,18 +101,33 @@ In dialogue, press **E / Enter / Space** (or A / ×) to finish the line or conti
 
 ## Installation
 
+### Easy installers
+
+You do not need a coding agent, Unity, or a terminal. Both installers contain the whole game and work offline.
+
+| Computer | Installer filename | How to install |
+| --- | --- | --- |
+| Mac, Apple Silicon or Intel | [Download Mac installer](https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.1.0/SaltmossHarbor-v1.1.0-macOS-universal.dmg) | Open the disk image, drag **Saltmoss Harbor** onto **Applications**, then open it from Applications. |
+| Windows 10/11, Intel/AMD 64-bit | [Download Windows installer](https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.1.0/SaltmossHarbor-v1.1.0-Windows-x64-Setup.exe) | Open Setup, choose **Next → Install → Finish**, then use the desktop or Start menu shortcut. No administrator password is needed. |
+
+Each installer includes a **START HERE** guide. You can also [read the guide](https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.1.0/START-HERE.txt) before downloading. Portable archives and Linux downloads are available on the release page.
+
+Quit the game before updating. Updates and removal keep your saved progress. On Windows, remove the game in **Settings → Apps**; on Mac, move it from Applications to the Trash.
+
+The Mac app is ad-hoc signed and has not been notarized by Apple. If blocked, try opening it from Applications, then use **System Settings → Privacy & Security → Open Anyway** for Saltmoss Harbor ([Apple's guide](https://support.apple.com/102445)). The Windows installer is unsigned; an unfamiliar-app prompt may offer **More info → Run anyway**. Approve only the copy from the official release. The Windows installer has been packaged and its contents checked, but has not been run on a Windows PC.
+
 ### Give this to your agent
 
 Paste this into Claude Code, Codex, Cursor or any other coding agent that can run commands on your computer:
 
 ```text
-Install Saltmoss Harbor v1.0.1 on this computer from its official GitHub release, then tell me how to start it.
+Install Saltmoss Harbor v1.1.0 on this computer from its official GitHub release, then tell me how to start it.
 
-Release: https://github.com/gazhenko/saltmoss-harbor/releases/tag/v1.0.1
-Download each file from https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.0.1/<file>
-  macOS, Apple Silicon or Intel  SaltmossHarbor-v1.0.1-macOS-universal.zip  contains "Saltmoss Harbor.app"
-  Windows 10/11, x64             SaltmossHarbor-v1.0.1-Windows-x64.zip      files at the zip root; the game is SaltmossHarbor.exe
-  Linux, x64                     SaltmossHarbor-v1.0.1-Linux-x64.tar.gz     files at the archive root; the game is SaltmossHarbor.x86_64
+Release: https://github.com/gazhenko/saltmoss-harbor/releases/tag/v1.1.0
+Download each file from https://github.com/gazhenko/saltmoss-harbor/releases/download/v1.1.0/<file>
+  macOS, Apple Silicon or Intel  SaltmossHarbor-v1.1.0-macOS-universal.zip  contains "Saltmoss Harbor.app"
+  Windows 10/11, x64             SaltmossHarbor-v1.1.0-Windows-x64.zip      files at the zip root; the game is SaltmossHarbor.exe
+  Linux, x64                     SaltmossHarbor-v1.1.0-Linux-x64.tar.gz     files at the archive root; the game is SaltmossHarbor.x86_64
   Checksums                      SHA256SUMS.txt
 
 1. Detect the OS and CPU. If this computer is not one of the three platforms above (for example Windows or Linux on ARM), stop and tell me.
@@ -129,7 +149,7 @@ Download the archive for your computer from the [latest release](../../releases/
 - **macOS** (Apple Silicon + Intel): unzip, right-click `Saltmoss Harbor.app` → Open (the build is ad-hoc signed, not
   notarized). If macOS says it is damaged: `xattr -dr com.apple.quarantine "Saltmoss Harbor.app"`.
 - **Windows** (x64): extract the zip into a new folder and run `SaltmossHarbor.exe`. The Windows player is built from the same source as the others but hasn't been run on Windows yet; please report problems in an issue.
-- **Linux** (x64): extract into a new folder with `tar -xzf SaltmossHarbor-v1.0.1-Linux-x64.tar.gz`, then
+- **Linux** (x64): extract into a new folder with `tar -xzf SaltmossHarbor-v1.1.0-Linux-x64.tar.gz`, then
   `chmod +x SaltmossHarbor.x86_64 && ./SaltmossHarbor.x86_64` (Vulkan or OpenGL 4.5). The Linux player has been
   started and rendered under software OpenGL but not yet played on real Linux hardware.
 
@@ -149,7 +169,7 @@ packages in `Tools/requirements.txt` (only to regenerate art and audio); Blender
    it builds the clay materials, the Resources banks, the world scene from `Data/town_layout.json` and the Gallery.
 2. **Saltmoss ▸ Build ▸ All Platforms** exports players into `Builds/`. Headless: `Tools/remote.sh setup|content|build`
    runs the same steps on a licensed build machine over SSH (`Tools/cscheck.sh` type-checks the C# in seconds first).
-3. `Tools/release.sh v1.0.1` packages the players and the trailer with checksums and publishes a GitHub release.
+3. `Tools/release.sh v1.1.0` packages the players and the trailer with checksums and publishes a GitHub release.
 
 Everything in the game is generated from code:
 - `Tools/clay/` — the clay sculpting toolkit (`clay.py`: signed-distance primitives, smooth unions, paint, lumps and

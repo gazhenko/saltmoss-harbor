@@ -211,7 +211,7 @@ namespace Saltmoss
 
         void Update()
         {
-            if (TitleScreen.Showing || CatchReveal.Showing || DialogueRunner.Active || ServeUI.Showing || PauseMenu.Showing) return;
+            if (TitleScreen.Showing || CatchReveal.Showing || DialogueRunner.Active || ServeUI.Showing || PauseMenu.Showing || MapUI.Showing) return;
             if (ShopCounter.I != null && ShopCounter.I.Open) return;
             if (GameInput.Journal.WasPressedThisFrame() || (Showing && GameInput.Back.WasPressedThisFrame())) Toggle();
             if (!Showing) return;

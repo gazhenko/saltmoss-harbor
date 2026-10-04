@@ -35,6 +35,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: b76812ef24d2de64faa74f24606f856f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShoreFoamFar:
+        m_Texture: {fileID: 2800000, guid: b2ba7fa24d8413c378df8d8fc299b7fc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _CrestFoam: 0.72
@@ -52,5 +56,6 @@ Material:
     - _HarborColor: {r: 0.19999996, g: 0.41999996, b: 0.41999996, a: 1}
     - _SSSColor: {r: 0.24999997, g: 0.6, b: 0.45, a: 1}
     - _ShoreRect: {r: -160, g: -130, b: 320, a: 320}
+    - _ShoreRectFar: {r: -1200, g: -120, b: 2400, a: 487.5}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

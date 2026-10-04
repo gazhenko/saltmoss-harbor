@@ -13,6 +13,7 @@ namespace Saltmoss
         static PauseMenu inst;
         Canvas canvas;
         RectTransform body;
+        VerticalLayoutGroup bodyLayout;
         TextMeshProUGUI title;
         readonly List<GameObject> items = new List<GameObject>();
         enum Page { Main, Settings, Controls }
@@ -43,7 +44,7 @@ namespace Saltmoss
             title = ClayUI.Text("Title", panel.transform, "Paused", 54f, ClayUI.Red, TextAlignmentOptions.Top, true);
             title.margin = new Vector4(0, 30, 0, 0);
             body = ClayUI.Rect("Body", panel.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -120f), new Vector2(1060f, 740f), new Vector2(0.5f, 1f));
-            var vl = body.gameObject.AddComponent<VerticalLayoutGroup>();
+            var vl = bodyLayout = body.gameObject.AddComponent<VerticalLayoutGroup>();
             vl.spacing = 12f;
             vl.childAlignment = TextAnchor.UpperCenter;
             vl.childControlHeight = false;
@@ -101,6 +102,7 @@ namespace Saltmoss
         {
             page = p;
             Clear();
+            bodyLayout.spacing = 12f;
             Selectable first = null;
             switch (p)
             {
@@ -130,9 +132,12 @@ namespace Saltmoss
                     break;
                 case Page.Controls:
                     title.text = "Controls";
+                    // every control plus the two buttons has to fit the panel: tighter rows, buttons side by side
+                    bodyLayout.spacing = 6f;
                     first = ControlsRows();
-                    Btn("Reset to defaults", () => { GameInput.ResetAllBindings(); Show(Page.Controls); }, 460f);
-                    Btn("Done", () => Show(Page.Main), 360f);
+                    var bar = Row("", 80f);
+                    ClayUI.Button("Reset", bar, "Reset to defaults", new Vector2(0.5f, 0.5f), new Vector2(-200f, 0f), new Vector2(440f, 76f), () => { GameInput.ResetAllBindings(); Show(Page.Controls); }, 30f);
+                    ClayUI.Button("Done", bar, "Done", new Vector2(0.5f, 0.5f), new Vector2(240f, 0f), new Vector2(340f, 76f), () => Show(Page.Main), 30f);
                     break;
             }
             Nav();
@@ -201,13 +206,13 @@ namespace Saltmoss
             for (int i = 0; i < GameInput.BindNames.Length; i++)
             {
                 var bind = (Bind)i;
-                var row = Row(GameInput.BindNames[i], 54f);
+                var row = Row(GameInput.BindNames[i], 46f);
                 row.GetComponentInChildren<TextMeshProUGUI>().fontSize = 24f;
                 for (int sIdx = 0; sIdx < 3; sIdx++)
                 {
                     var slot = (Slot)sIdx;
                     TextMeshProUGUI txt = null;
-                    var b = ClayUI.Button("Slot", row, GameInput.Label(bind, slot), new Vector2(1f, 0.5f), new Vector2(-470f + sIdx * 180f + 90f, 0f), new Vector2(170f, 52f), null, 22f);
+                    var b = ClayUI.Button("Slot", row, GameInput.Label(bind, slot), new Vector2(1f, 0.5f), new Vector2(-470f + sIdx * 180f + 90f, 0f), new Vector2(170f, 44f), null, 22f);
                     txt = b.GetComponentInChildren<TextMeshProUGUI>();
                     b.onClick.AddListener(() =>
                     {
@@ -226,7 +231,7 @@ namespace Saltmoss
             if (GameInput.Capturing) return;
             if (!Showing)
             {
-                if (TitleScreen.Showing || JournalUI.Showing || ServeUI.Showing) return;
+                if (TitleScreen.Showing || JournalUI.Showing || ServeUI.Showing || MapUI.Showing) return;
                 if (GameInput.Pause.WasPressedThisFrame() && !DialogueRunner.Active && !CatchReveal.Showing) { fromTitle = false; Open(Page.Main); }
                 return;
             }

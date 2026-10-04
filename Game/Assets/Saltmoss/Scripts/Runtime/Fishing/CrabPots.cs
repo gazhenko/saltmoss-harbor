@@ -20,6 +20,9 @@ namespace Saltmoss
         public bool Hauling { get; private set; }
         static readonly Color[] colours = { new Color(0.85f, 0.3f, 0.2f), new Color(0.95f, 0.75f, 0.2f), new Color(0.25f, 0.55f, 0.85f), new Color(0.3f, 0.7f, 0.4f), new Color(0.85f, 0.45f, 0.75f), new Color(0.95f, 0.95f, 0.9f) };
 
+        /// <summary>The buoy colour for a pot (as painted on its buoy), for the map.</summary>
+        public static Color BuoyColour(int i) => colours[((i % colours.Length) + colours.Length) % colours.Length];
+
         void Awake() { I = this; }
 
         void Start() => Resync();

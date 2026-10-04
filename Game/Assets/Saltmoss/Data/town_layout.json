@@ -1395,58 +1395,6 @@
    "tag": "sign"
   },
   {
-   "model": "town/bunting",
-   "pos": [
-    -7.75,
-    4.07,
-    -15.5
-   ],
-   "yaw": 0.0,
-   "scale": 1.0,
-   "collide": "none",
-   "tag": "bunting tier2",
-   "tier": 2
-  },
-  {
-   "model": "town/bunting",
-   "pos": [
-    0.75,
-    4.07,
-    -15.5
-   ],
-   "yaw": 0.0,
-   "scale": 1.0,
-   "collide": "none",
-   "tag": "bunting tier2",
-   "tier": 2
-  },
-  {
-   "model": "town/bunting",
-   "pos": [
-    9.5,
-    4.07,
-    -15.5
-   ],
-   "yaw": 0.0,
-   "scale": 1.0,
-   "collide": "none",
-   "tag": "bunting tier2",
-   "tier": 2
-  },
-  {
-   "model": "town/bunting",
-   "pos": [
-    0.0,
-    4.1,
-    -1.0
-   ],
-   "yaw": 90.0,
-   "scale": 1.0,
-   "collide": "none",
-   "tag": "bunting tier2",
-   "tier": 2
-  },
-  {
    "model": "town/driftwood",
    "pos": [
     -27.0,
@@ -3475,49 +3423,145 @@
    "tag": "prop tier2"
   },
   {
-   "model": "town/bunting",
+   "model": "town/bunting_95",
    "pos": [
-    -15.2,
-    4.1,
-    2.0
+    -7.75,
+    4.07,
+    -15.7
    ],
-   "yaw": 90.0,
+   "yaw": -0.0,
    "scale": 1.0,
    "collide": "none",
-   "tag": "bunting tier1"
+   "tag": "bunting tier2"
   },
   {
-   "model": "town/bunting",
+   "model": "town/bunting_75",
    "pos": [
-    20.4,
-    4.1,
-    1.0
+    0.75,
+    4.07,
+    -15.7
    ],
-   "yaw": 0.0,
+   "yaw": -0.0,
    "scale": 1.0,
    "collide": "none",
-   "tag": "bunting tier1"
+   "tag": "bunting tier2"
   },
   {
-   "model": "town/bunting",
+   "model": "town/bunting_100",
+   "pos": [
+    9.5,
+    4.07,
+    -15.7
+   ],
+   "yaw": -0.0,
+   "scale": 1.0,
+   "collide": "none",
+   "tag": "bunting tier2"
+  },
+  {
+   "model": "town/bunting_121",
    "pos": [
     0.0,
-    8.382,
-    -29.7
+    4.15,
+    0.5
    ],
-   "yaw": 0.0,
+   "yaw": -98.53,
+   "scale": 1.0,
+   "collide": "none",
+   "tag": "bunting tier2"
+  },
+  {
+   "model": "town/bunting_108",
+   "pos": [
+    -15.15,
+    4.15,
+    -0.3
+   ],
+   "yaw": 79.84,
    "scale": 1.0,
    "collide": "none",
    "tag": "bunting tier1"
   },
   {
-   "model": "town/bunting",
+   "model": "town/bunting_53",
    "pos": [
-    -11.5,
-    10.036,
-    -38.8
+    20.9,
+    4.15,
+    1.0
    ],
-   "yaw": 5.0,
+   "yaw": 19.8,
+   "scale": 1.0,
+   "collide": "none",
+   "tag": "bunting tier1"
+  },
+  {
+   "model": "town/bunting_pole",
+   "pos": [
+    10.6,
+    5.482,
+    -32.78
+   ],
+   "yaw": 0.0,
+   "scale": 1.0,
+   "collide": "box",
+   "tag": "prop tier1"
+  },
+  {
+   "model": "town/bunting_pole",
+   "pos": [
+    16.4,
+    5.493,
+    -31.22
+   ],
+   "yaw": 0.0,
+   "scale": 1.0,
+   "collide": "box",
+   "tag": "prop tier1"
+  },
+  {
+   "model": "town/bunting_60",
+   "pos": [
+    13.5,
+    7.843,
+    -32.0
+   ],
+   "yaw": -15.05,
+   "scale": 1.0,
+   "collide": "none",
+   "tag": "bunting tier1"
+  },
+  {
+   "model": "town/bunting_pole",
+   "pos": [
+    -20.9,
+    7.384,
+    -40.28
+   ],
+   "yaw": 0.0,
+   "scale": 1.0,
+   "collide": "box",
+   "tag": "prop tier1"
+  },
+  {
+   "model": "town/bunting_pole",
+   "pos": [
+    -15.1,
+    7.402,
+    -38.72
+   ],
+   "yaw": 0.0,
+   "scale": 1.0,
+   "collide": "box",
+   "tag": "prop tier1"
+  },
+  {
+   "model": "town/bunting_60",
+   "pos": [
+    -18.0,
+    9.752,
+    -39.5
+   ],
+   "yaw": -15.05,
    "scale": 1.0,
    "collide": "none",
    "tag": "bunting tier1"
@@ -7341,6 +7385,60 @@
  ],
  "terrain": {
   "tiles": [
+   "far_0_0",
+   "far_0_1",
+   "far_0_2",
+   "far_0_3",
+   "far_0_4",
+   "far_10_0",
+   "far_10_1",
+   "far_10_2",
+   "far_10_3",
+   "far_10_4",
+   "far_1_0",
+   "far_1_1",
+   "far_1_2",
+   "far_1_3",
+   "far_1_4",
+   "far_2_0",
+   "far_2_1",
+   "far_2_2",
+   "far_2_3",
+   "far_2_4",
+   "far_3_0",
+   "far_3_1",
+   "far_3_2",
+   "far_3_3",
+   "far_3_4",
+   "far_4_0",
+   "far_4_1",
+   "far_4_2",
+   "far_4_3",
+   "far_4_4",
+   "far_5_0",
+   "far_5_1",
+   "far_5_2",
+   "far_5_3",
+   "far_6_0",
+   "far_6_1",
+   "far_6_2",
+   "far_6_3",
+   "far_6_4",
+   "far_7_0",
+   "far_7_1",
+   "far_7_2",
+   "far_7_3",
+   "far_7_4",
+   "far_8_0",
+   "far_8_1",
+   "far_8_2",
+   "far_8_3",
+   "far_8_4",
+   "far_9_0",
+   "far_9_1",
+   "far_9_2",
+   "far_9_3",
+   "far_9_4",
    "tile_0_0",
    "tile_0_1",
    "tile_0_2",

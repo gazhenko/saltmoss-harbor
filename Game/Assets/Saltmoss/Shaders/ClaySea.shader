@@ -22,6 +22,8 @@ Shader "Saltmoss/ClaySea"
         _SSS ("Backlit crest", Range(0, 2)) = 0.6
         [NoScaleOffset] _ShoreFoam ("Shore foam map (R)", 2D) = "black" {}
         _ShoreRect ("Shore map rect (minX, minZ, sizeX, sizeZ)", Vector) = (-128, -128, 256, 256)
+        [NoScaleOffset] _ShoreFoamFar ("Coast foam map (R), outside the shore map", 2D) = "black" {}
+        _ShoreRectFar ("Coast map rect (minX, minZ, sizeX, sizeZ)", Vector) = (0, 0, 0, 0)
     }
 
     SubShader
@@ -42,13 +44,14 @@ Shader "Saltmoss/ClaySea"
         TEXTURE2D(_RippleNormal); SAMPLER(sampler_RippleNormal);
         TEXTURE2D(_FingerNormal); SAMPLER(sampler_FingerNormal);
         TEXTURE2D(_ShoreFoam); SAMPLER(sampler_ShoreFoam);
+        TEXTURE2D(_ShoreFoamFar); SAMPLER(sampler_ShoreFoamFar);
 
         CBUFFER_START(UnityPerMaterial)
             half4 _DeepColor, _CrestColor, _HarborColor, _FoamColor, _SSSColor;
             float _RippleScale; half _RippleStrength;
             float _FingerScale; half _FingerStrength;
             half _Smooth, _FoamSmooth, _CrestFoam, _SSS;
-            float4 _ShoreRect;
+            float4 _ShoreRect, _ShoreRectFar;
         CBUFFER_END
 
         float RoughAt(float2 xz)
@@ -156,8 +159,11 @@ Shader "Saltmoss/ClaySea"
                 // foam: crests, shores/pilings, wakes — lumpy white clay with a broken edge
                 half fn = ClayNoise3(float3(xz * 1.7, _ClayFrame * 0.0 + 2.0)) * 0.6h + ClayNoise3(float3(xz * 5.3, 9.0)) * 0.4h;
                 half crestFoam = saturate((i.crest.x - _CrestFoam + (fn - 0.5h) * 0.5h) * 4.0h) * saturate(i.crest.y * 1.5h);
+                // the detailed harbour map, else the coarse one along the rest of the coast
                 float2 suv = (xz - _ShoreRect.xy) / _ShoreRect.zw;
-                half shore = all(suv > 0) && all(suv < 1) ? SAMPLE_TEXTURE2D(_ShoreFoam, sampler_ShoreFoam, suv).r : 0;
+                float2 fuv = (xz - _ShoreRectFar.xy) / max(_ShoreRectFar.zw, 1.0);
+                half shore = all(suv > 0) && all(suv < 1) ? SAMPLE_TEXTURE2D(_ShoreFoam, sampler_ShoreFoam, suv).r
+                           : all(fuv > 0) && all(fuv < 1) ? SAMPLE_TEXTURE2D(_ShoreFoamFar, sampler_ShoreFoamFar, fuv).r : 0;
                 // shore foam breathes with the swell
                 half shoreFoam = saturate((shore - 0.5h + (fn - 0.5h) * 0.5h + i.crest.x * 0.1h) * 3.0h);
                 half wake = 0;

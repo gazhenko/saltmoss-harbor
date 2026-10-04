@@ -120,6 +120,8 @@ namespace Saltmoss
                 PlayerController.I?.Teleport(BoatController.I.boardPoint, BoatController.I.boardYaw);
                 CameraRig.I?.SnapBehindTarget();
             }
+            string glyphs = CommandLine.Get("-padGlyphs");
+            if (glyphs != null) GameInput.PinPadGlyphs(glyphs == "ps" ? PadStyle.PlayStation : glyphs == "nintendo" ? PadStyle.Nintendo : PadStyle.Xbox);
             int pots = (int)CommandLine.GetFloat("-pots", 0);
             if (pots > 0 && BoatController.I != null)
             {
@@ -132,6 +134,8 @@ namespace Saltmoss
                 CrabPots.I?.Resync();
                 PotsVisual.Refresh();
             }
+            string map = CommandLine.Get("-map");
+            if (map != null) MapUI.OpenForCapture(map == "sea");
             string dlg = CommandLine.Get("-dialogue");
             if (dlg != null)
             {

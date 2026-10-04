@@ -1,0 +1,12 @@
+{
+  "name": "Saltmoss Harbor",
+  "repo": "saltmoss-harbor",
+  "id": "SaltmossHarbor",
+  "prefix": "SaltmossHarbor",
+  "version": "v1.1.0",
+  "app": "Saltmoss Harbor.app",
+  "exe": "SaltmossHarbor.exe",
+  "mac_root": ".",
+  "windows_root": ".",
+  "checksums": "SHA256SUMS.txt"
+}
